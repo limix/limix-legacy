@@ -3,7 +3,7 @@ import unittest
 import scipy as SP
 import pdb
 import sys
-import limix
+import limix_legacy
 
 
 class Acovar_test(object):

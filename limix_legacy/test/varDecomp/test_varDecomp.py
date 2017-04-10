@@ -5,7 +5,7 @@ import scipy.stats
 import pdb
 import os
 import sys
-import limix
+import limix_legacy
 import limix_legacy.deprecated.modules.varianceDecomposition as VAR
 from limix_legacy.test import data
 

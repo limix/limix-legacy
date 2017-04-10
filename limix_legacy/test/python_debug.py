@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0,'./../debug.darwin/interfaces/python')
-import limix
+import limix_legacy
 import scipy as SP
 from . import data
 import limix_legacy.deprecated.modules.varianceDecomposition as VAR
