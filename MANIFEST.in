@@ -1,0 +1,18 @@
+include LICENSE
+include README.md
+include setup.cfg
+recursive-include limix *.py *.txt *.h5
+
+recursive-include External/Eigen *
+recursive-include External/nlopt *
+include External/nlopt_src.files
+
+recursive-include src/limix *.cpp *.h
+recursive-include src/interfaces *.cpp *.txt *.i *.py
+
+recursive-include cython/lmm_forest *
+
+include limix/io/test/data/hdf5/data.h5
+include limix/io/test/data/csv/pheno.csv
+include limix/io/test/data/gen/example.gen
+include limix/io/test/data/gen/example.sample
