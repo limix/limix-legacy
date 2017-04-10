@@ -1,6 +1,6 @@
 # Limix
 
-[![PyPI-License](https://img.shields.io/pypi/l/limix_legacy.svg?style=flat-square)](https://pypi.python.org/pypi/limix/) [![PyPI-Version](https://img.shields.io/pypi/v/limix_legacy.svg?style=flat-square)](https://pypi.python.org/pypi/limix/) [![Anaconda-Version](https://anaconda.org/conda-forge/limix/badges/version.svg)](https://anaconda.org/conda-forge/limix) [![Anaconda-Downloads](https://anaconda.org/conda-forge/limix/badges/downloads.svg)](https://anaconda.org/conda-forge/limix)
+[![PyPI-License](https://img.shields.io/pypi/l/limix_legacy.svg?style=flat-square)](https://pypi.python.org/pypi/limix_legacy/) [![PyPI-Version](https://img.shields.io/pypi/v/limix_legacy.svg?style=flat-square)](https://pypi.python.org/pypi/limix_legacy/) [![Anaconda-Version](https://anaconda.org/conda-forge/limix_legacy/badges/version.svg)](https://anaconda.org/conda-forge/limix_legacy) [![Anaconda-Downloads](https://anaconda.org/conda-forge/limix_legacy/badges/downloads.svg)](https://anaconda.org/conda-forge/limix_legacy)
 
 Limix is a flexible and efficient linear mixed model library with interfaces
 to Python.
@@ -17,13 +17,13 @@ The recommended way of installing it is via
 [conda](http://conda.pydata.org/docs/index.html)
 
 ```bash
-conda install -c conda-forge limix
+conda install -c conda-forge limix-legacy
 ```
 
 An alternative way (and likely to fail) would be via pip
 
 ```
-pip install limix
+pip install limix-legacy
 ```
 
 ## Usage

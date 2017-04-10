@@ -14,7 +14,7 @@ except _DistributionNotFound:
 
 def test():
     import os
-    p = __import__('limix-legacy').__path__[0]
+    p = __import__('limix_legacy').__path__[0]
     src_path = os.path.abspath(p)
     old_path = os.getcwd()
     os.chdir(src_path)
