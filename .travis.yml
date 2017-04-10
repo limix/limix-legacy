@@ -19,3 +19,10 @@ script:
 - popd
 notifications:
   email: false
+deploy:
+  provider: pypi
+  user: dhorta
+  password:
+    secure: jh9kPAxK+0CnYvLiqJrtsl+J3tcc/evZw20mveIaGf+THAtPUtlzDeqQUGVFkaanlYx+kTaDyPoqea/AIMH9tzk0Fit0dQkkI96z+iJIiKr9h2gpYgFqgq/EMhbP0icmF3q2orMcfl/oqvYjwn/GYRlpHpzR9B27QJlDnw3jUvd+hd/swocfl+LunNpgvs83qkgEYUu5dRstWrgbPPoaFuXBhr7Cjlu9CFZltKOAC/KFy19x8FH8i7dUvmYLhjrFEYYgJYe+i6SXe34Pwb3turcHCFMU/O4gFCglERI2wYrvD+69ECxbq7pRscudKUVe3yTolewmophJjeyB4Cdh9PDjKVOloKaka6WkhA7YT0jygtowRTQE/wLN5JR9eS7zY9Il0KGBkYk3LfFmeXV8EVf9SWdxD6EmcKa0ImYcwHmPQXyt2lxMVwC/FiyRBVnIxhZeFLa1YQFI0/Y+jcg4kG2jTGCYFFZvaoIaCtPCcqV856q9EMA+/BFQnupbiE3zSdvhKL/iuwkghaF8V5B39R9saHwDVKnExuMyQK95FboOwjm06SWOEIiMIu+NrW/uU+0HWaEDlqjilv/L8dh6Jx/Hb8Wm4/0Hi+y8zh68Qc2pkAhG9Nf7Tn/Y27MNg5X+SfOHGF+j5TMZeXa64acYOxm8xIl/kWc9DAcioCr9eWs=
+  on:
+    repo: limix/limix-legacy
