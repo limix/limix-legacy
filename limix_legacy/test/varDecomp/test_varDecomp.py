@@ -7,7 +7,7 @@ import os
 import sys
 import limix
 import limix_legacy.deprecated.modules.varianceDecomposition as VAR
-from limix.test import data
+from limix_legacy.test import data
 
 
 class VarianceDecompoitionKronecker_test(unittest.TestCase):

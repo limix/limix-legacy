@@ -7,7 +7,7 @@ from limix_legacy.core.gp import GP2KronSumLR
 from limix_legacy.core.gp import GP2KronSum
 import scipy as sp
 import scipy.stats as st
-from limix.mtSet.core.iset_utils import * 
+from limix_legacy.mtSet.core.iset_utils import * 
 import numpy as np
 import numpy.linalg as nla
 import scipy.linalg as la

@@ -5,9 +5,9 @@ Created on Sep 19, 2013
 '''
 # create some test cases
 import scipy as SP
-from limix.ensemble import lmm_forest_utils as utils
+from limix_legacy.ensemble import lmm_forest_utils as utils
 import h5py
-from limix.ensemble.lmm_forest import Forest as MF
+from limix_legacy.ensemble.lmm_forest import Forest as MF
 import os
 import unittest
 

@@ -11,7 +11,7 @@ from . import py_splitting_core as SC
 from . import par_lmm_forest
 from . import lmm_forest_utils as utils
 from . import blup as BLUP
-from limix.ensemble import SplittingCore as CSP
+from limix_legacy.ensemble import SplittingCore as CSP
 
 class Forest(object):
     '''
