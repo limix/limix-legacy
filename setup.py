@@ -102,7 +102,7 @@ def core_extension(reswig):
 
     def swig_opts():
         return [
-            '-c++', '-outdir', join('limix-legacy', 'deprecated'), '-I' + join('src')
+            '-c++', '-outdir', join('limix_legacy', 'deprecated'), '-I' + join('src')
         ]
 
     def nlopt_files():
@@ -112,8 +112,8 @@ def core_extension(reswig):
         return (src, hdr)
 
     (src, hdr) = nlopt_files()
-    src.extend(globr(join('src', 'limix-legacy'), '*.cpp'))
-    hdr.extend(globr(join('src', 'limix-legacy'), '*.h'))
+    src.extend(globr(join('src', 'limix_legacy'), '*.cpp'))
+    hdr.extend(globr(join('src', 'limix_legacy'), '*.h'))
 
     incl = ['src', 'External', join('External', 'nlopt')]
     incl = [join(i) for i in incl]

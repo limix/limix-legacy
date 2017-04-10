@@ -11,7 +11,7 @@ from . import pySplittingCore as SC
 from . import parMixedForest
 from . import mixedForestUtils as utils
 from . import BLUP
-import limix.deprecated as dlimix
+import limix_legacy.deprecated as dlimix
 
 class Forest(object):
     '''

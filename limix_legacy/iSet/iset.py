@@ -14,8 +14,8 @@ def fit_iSet(Y=None, Xr=None, F=None, Rr=None, factr=1e7, Rg=None, Ug=None, Sg=N
     msg+= ' subsequently quantile normalize the phenotypes'
     msg+= ' to a normal distribution prior to use mtSet/iSet.'
     msg+= ' This can be done within the LIMIX framework using'
-    msg+= ' the methods limix.utils.preprocess.regressOut and'
-    msg+= ' limix.utils.preprocess.gaussianize'
+    msg+= ' the methods limix_legacy.utils.preprocess.regressOut and'
+    msg+= ' limix_legacy.utils.preprocess.gaussianize'
     assert not (F is not None and bgRE), msg
     # strat
     strat = Ie is not None

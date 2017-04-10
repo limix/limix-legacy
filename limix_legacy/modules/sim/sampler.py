@@ -14,7 +14,7 @@ def standardize_design(G, mean_var=None):
         G /= np.sqrt(mean_var[1])
 
 def standardize_cov(K):
-    from limix.utils.preprocess import covar_rescale
+    from limix_legacy.utils.preprocess import covar_rescale
     return covar_rescale(K)
 
 def static_effsiz_sampler(effects):

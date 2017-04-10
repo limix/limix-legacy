@@ -12,8 +12,8 @@ from limix_legacy.core.mean.mean_base import MeanBase as lin_mean
 from limix_legacy.core.covar.dirIndirCov import DirIndirCov
 from limix_legacy.core.covar.fixed import FixedCov 
 from limix_legacy.core.covar.combinators import SumCov
-from limix.utils.preprocess import covar_rescaling_factor
-from limix.utils.preprocess import covar_rescale
+from limix_legacy.utils.preprocess import covar_rescaling_factor
+from limix_legacy.utils.preprocess import covar_rescale
 from limix_legacy.core.gp.gp_base import GP
 import pdb
 

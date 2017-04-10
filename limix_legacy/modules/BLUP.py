@@ -7,7 +7,7 @@ Created on Feb 20, 2013
 import scipy.linalg as LA
 import scipy as SP
 from . import lmm_fast
-import limix.deprecated as dlimix
+import limix_legacy.deprecated as dlimix
 
 class BLUP(object):
     '''

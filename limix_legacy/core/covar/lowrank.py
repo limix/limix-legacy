@@ -1,7 +1,7 @@
 import numpy as np
 import scipy as sp
 import scipy.linalg as la
-from limix.hcache import cached
+from limix_legacy.hcache import cached
 from .covar_base import Covariance
 import pdb
 

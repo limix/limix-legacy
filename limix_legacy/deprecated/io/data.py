@@ -15,9 +15,9 @@
 import scipy as sp
 import copy
 
-import limix.deprecated.io.data_util as du
-import limix.deprecated.io.genotype_reader as gr
-import limix.deprecated.io.phenotype_reader as pr
+import limix_legacy.deprecated.io.data_util as du
+import limix_legacy.deprecated.io.genotype_reader as gr
+import limix_legacy.deprecated.io.phenotype_reader as pr
 import pandas as pd
 
 class QTLData(object):

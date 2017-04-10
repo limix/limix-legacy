@@ -2,8 +2,8 @@ import unittest
 import numpy as np
 from limix_legacy.core.covar import FreeFormCov 
 from limix_legacy.core.covar import KronCov
-from limix.utils.preprocess import covar_rescale
-from limix.utils.check_grad import mcheck_grad
+from limix_legacy.utils.preprocess import covar_rescale
+from limix_legacy.utils.check_grad import mcheck_grad
 import scipy as sp
 
 class TestKronCov(unittest.TestCase):

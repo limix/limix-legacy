@@ -2,7 +2,7 @@ import sys
 from .covar_base import Covariance
 from limix_legacy.core.covar import Cov2KronSum
 from limix_legacy.core.covar import LowRankCov
-from limix.hcache import cached
+from limix_legacy.hcache import cached
 from limix_legacy.core.type.exception import TooExpensiveOperationError
 from limix_legacy.core.utils import my_name
 from .util import msg_too_expensive_dim
@@ -10,7 +10,7 @@ import scipy as sp
 import numpy as np
 import scipy.linalg as la
 import warnings
-from limix.utils.linalg import vei_CoR_veX
+from limix_legacy.utils.linalg import vei_CoR_veX
 
 import pdb
 
@@ -497,7 +497,7 @@ class Cov3KronSumLR(Cov2KronSum):
 
 if __name__ == '__main__':
     from limix_legacy.core.covar import FreeFormCov
-    from limix.utils.preprocess import covar_rescale
+    from limix_legacy.utils.preprocess import covar_rescale
 
     # define row caoriance
     dim_r = 10

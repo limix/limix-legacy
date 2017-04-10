@@ -5,7 +5,7 @@ import numpy as np
 import sys
 from limix_legacy.core.covar import Cov2KronSumLR
 from limix_legacy.core.covar import FreeFormCov
-from limix.utils.check_grad import mcheck_grad
+from limix_legacy.utils.check_grad import mcheck_grad
 from limix_legacy.core.type.exception import TooExpensiveOperationError
 
 class TestCov2KronSum(unittest.TestCase):

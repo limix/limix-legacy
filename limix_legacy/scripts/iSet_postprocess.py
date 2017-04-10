@@ -50,7 +50,7 @@ def entry_point():
 
     if 0:
         if options.manhattan:
-            import limix.utils.plot as plot
+            import limix_legacy.utils.plot as plot
 
             if not os.path.exists(options.outfile):
                 os.makedirs(options.outfile)

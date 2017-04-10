@@ -1,6 +1,6 @@
 import sys
-from limix.utils.preprocess import remove_dependent_cols
-from limix.utils.util_functions import smartDumpDictHdf5
+from limix_legacy.utils.preprocess import remove_dependent_cols
+from limix_legacy.utils.util_functions import smartDumpDictHdf5
 
 # core
 from limix_legacy.core.gp import GP2KronSum
@@ -49,8 +49,8 @@ class MTSet():
         msg+= ' subsequently quantile normalize the phenotypes'
         msg+= ' to a normal distribution prior to use mtSet.'
         msg+= ' This can be done within the LIMIX framework using'
-        msg+= ' the methods limix.utils.preprocess.regressOut and'
-        msg+= ' limix.utils.preprocess.gaussianize'
+        msg+= ' the methods limix_legacy.utils.preprocess.regressOut and'
+        msg+= ' limix_legacy.utils.preprocess.gaussianize'
         assert not (F is not None and self.bgRE), msg
         if F is not None:
             F = remove_dependent_cols(F)
@@ -383,7 +383,7 @@ class MTSet():
         return params0
 
 if __name__=='__main__':
-    from limix.utils.preprocess import covar_rescale
+    from limix_legacy.utils.preprocess import covar_rescale
 
     sp.random.seed(0)
 

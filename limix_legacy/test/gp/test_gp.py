@@ -1,7 +1,7 @@
 """GP testing code"""
 import unittest
 import scipy as SP
-import limix.deprecated as dlimix
+import limix_legacy.deprecated as dlimix
 
 class CGPbase_test(unittest.TestCase):
     """test class for GPbase"""

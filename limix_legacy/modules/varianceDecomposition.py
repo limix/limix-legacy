@@ -16,8 +16,8 @@ import sys
 import scipy as sp
 import scipy.linalg
 import scipy.stats
-import limix.deprecated as dlimix
-import limix.deprecated.utils.preprocess as preprocess
+import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated.utils.preprocess as preprocess
 import pdb
 import time
 import copy

@@ -2,7 +2,7 @@ from .covar_base import Covariance
 import pdb
 import numpy as np
 import scipy as sp
-from limix.hcache import Cached, cached
+from limix_legacy.hcache import Cached, cached
 
 class KronCov(Covariance):
     """
@@ -123,7 +123,7 @@ class KronCov(Covariance):
 
 if __name__=='__main__':
     from limix_legacy.core.covar import FreeFormCov
-    from limix.utils.preprocess import covar_rescale
+    from limix_legacy.utils.preprocess import covar_rescale
 
     # define row caoriance
     dim_r = 10

@@ -1,8 +1,8 @@
 import sys
 from limix_legacy.core.mean import MeanKronSum
 from limix_legacy.core.covar import Cov3KronSumLR
-from limix.hcache import Cached, cached
-from limix.utils.util_functions import vec
+from limix_legacy.hcache import Cached, cached
+from limix_legacy.utils.util_functions import vec
 
 import pdb
 import numpy as NP

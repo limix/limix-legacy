@@ -12,7 +12,7 @@ import scipy as sp
 #import limix
 from optparse import OptionParser
 import pandas as pd
-import limix.deprecated.io.output_writer as ow
+import limix_legacy.deprecated.io.output_writer as ow
 
 
 class LIMIX_runner(object):

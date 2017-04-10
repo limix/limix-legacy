@@ -7,7 +7,7 @@ import sys
 import numpy as NP
 import scipy as SP
 from . import lmm_fast
-import limix.deprecated as dlimix
+import limix_legacy.deprecated as dlimix
 
 def is_leaf(node_ind, child_nodes):
     return child_nodes[node_ind] == 0

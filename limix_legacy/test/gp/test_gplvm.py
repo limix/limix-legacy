@@ -2,7 +2,7 @@
 import unittest
 import scipy as SP
 import numpy as np
-import limix.deprecated as dlimix
+import limix_legacy.deprecated as dlimix
 import scipy.linalg as linalg
 
 

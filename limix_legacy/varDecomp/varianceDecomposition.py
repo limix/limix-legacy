@@ -16,9 +16,9 @@ import sys
 import scipy as sp
 import scipy.linalg
 import scipy.stats
-import limix.deprecated.utils.preprocess as preprocess
-from limix.utils.preprocess import covar_rescaling_factor 
-from limix.utils.util_functions import vec 
+import limix_legacy.deprecated.utils.preprocess as preprocess
+from limix_legacy.utils.preprocess import covar_rescaling_factor 
+from limix_legacy.utils.util_functions import vec 
 from limix_legacy.core.covar import *
 from limix_legacy.core.gp import *
 from limix_legacy.core.mean import *

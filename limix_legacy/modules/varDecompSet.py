@@ -15,10 +15,10 @@
 """
 PANAMA module in limix
 """
-import limix.deprecated.modules.qtl as qtl
-import limix.deprecated.stats.fdr as fdr
-from limix.deprecated.stats.pca import *
-import limix.deprecated as dlimix
+import limix_legacy.deprecated.modules.qtl as qtl
+import limix_legacy.deprecated.stats.fdr as fdr
+from limix_legacy.deprecated.stats.pca import *
+import limix_legacy.deprecated as dlimix
 import scipy as sp
 import scipy.linalg as la
 import pdb

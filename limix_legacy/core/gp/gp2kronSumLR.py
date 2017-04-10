@@ -2,7 +2,7 @@ import sys
 from limix_legacy.core.mean import MeanKronSum
 from limix_legacy.core.covar import Cov2KronSumLR
 from limix_legacy.core.covar import Covariance
-from limix.hcache import Cached, cached
+from limix_legacy.hcache import Cached, cached
 
 import pdb
 import numpy as NP
@@ -11,7 +11,7 @@ import scipy.linalg as LA
 import time as TIME
 from limix_legacy.core.gp import GP
 from limix_legacy.core.covar.cov_reml import cov_reml
-from limix.utils.util_functions import vec
+from limix_legacy.utils.util_functions import vec
 from limix_legacy.core.utils import assert_type_or_list_type
 from limix_legacy.core.utils import assert_type
 from limix_legacy.core.utils import assert_subtype

@@ -6,7 +6,7 @@ import pdb
 import os
 import sys
 import limix
-import limix.deprecated.modules.varianceDecomposition as VAR
+import limix_legacy.deprecated.modules.varianceDecomposition as VAR
 from limix.test import data
 
 

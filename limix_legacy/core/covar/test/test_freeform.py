@@ -4,7 +4,7 @@ import scipy as SP
 import numpy as np
 import sys
 from limix_legacy.core.covar import FreeFormCov
-from limix.utils.check_grad import mcheck_grad
+from limix_legacy.utils.check_grad import mcheck_grad
 
 class TestFreeForm(unittest.TestCase):
     def setUp(self):

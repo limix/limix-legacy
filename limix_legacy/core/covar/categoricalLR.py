@@ -3,11 +3,11 @@ import numpy as np
 from .covar_base import Covariance
 from .freeform import FreeFormCov
 from .diagonal import DiagonalCov 
-from limix.hcache import cached
+from limix_legacy.hcache import cached
 from limix_legacy.core.type.exception import TooExpensiveOperationError
 from limix_legacy.core.utils import my_name
 from .util import msg_too_expensive_dim
-from limix.utils.svd_utils import svd_reduce
+from limix_legacy.utils.svd_utils import svd_reduce
 import scipy as sp
 import scipy.linalg as la
 import numpy.linalg as nla

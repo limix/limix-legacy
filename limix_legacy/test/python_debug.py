@@ -3,7 +3,7 @@ sys.path.insert(0,'./../debug.darwin/interfaces/python')
 import limix
 import scipy as SP
 from . import data
-import limix.deprecated.modules.varianceDecomposition as VAR
+import limix_legacy.deprecated.modules.varianceDecomposition as VAR
 import pdb
 
 if __name__ == '__main__':
