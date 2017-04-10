@@ -102,7 +102,7 @@ def core_extension(reswig):
 
     def swig_opts():
         return [
-            '-c++', '-outdir', join('limix', 'deprecated'), '-I' + join('src')
+            '-c++', '-outdir', join('limix-legacy', 'deprecated'), '-I' + join('src')
         ]
 
     def nlopt_files():
@@ -112,8 +112,8 @@ def core_extension(reswig):
         return (src, hdr)
 
     (src, hdr) = nlopt_files()
-    src.extend(globr(join('src', 'limix'), '*.cpp'))
-    hdr.extend(globr(join('src', 'limix'), '*.h'))
+    src.extend(globr(join('src', 'limix-legacy'), '*.cpp'))
+    hdr.extend(globr(join('src', 'limix-legacy'), '*.h'))
 
     incl = ['src', 'External', join('External', 'nlopt')]
     incl = [join(i) for i in incl]
@@ -133,7 +133,7 @@ def core_extension(reswig):
     depends = src + hdr
 
     ext = Extension(
-        'limix.deprecated._core',
+        'limix_legacy.deprecated._core',
         src,
         include_dirs=incl,
         extra_compile_args=extra_compile_args(),
@@ -150,7 +150,7 @@ def ensemble_extension():
     incl = [join('External'), np.get_include()]
     depends = src
     ext = Extension(
-        'limix.ensemble.SplittingCore',
+        'limix_legacy.ensemble.SplittingCore',
         src,
         language='c++',
         include_dirs=incl,
@@ -180,7 +180,7 @@ def setup_package(reswig, compatible):
     tests_require = ['pytest']
 
     metadata = dict(
-        name="limix",
+        name="limix-legacy",
         version="1.0.0",
         description="A flexible and fast mixed model toolbox.",
         long_description=long_description,
@@ -192,7 +192,7 @@ def setup_package(reswig, compatible):
         maintainer_email="stegle@ebi.ac.uk",
         packages=find_packages(),
         include_package_data=True,
-        url='https://github.com/limix/',
+        url='https://github.com/limix/limix-legacy',
         install_requires=install_requires,
         setup_requires=setup_requires,
         tests_require=tests_require,
@@ -202,14 +202,14 @@ def setup_package(reswig, compatible):
         cmdclass=dict(build_ext=build_ext_subclass),
         entry_points={
             'console_scripts': [
-                'limix_runner=limix.scripts.limix_runner:entry_point',
-                'mtSet_postprocess=limix.scripts.mtSet_postprocess:entry_point',
-                'mtSet_preprocess=limix.scripts.mtSet_preprocess:entry_point',
-                'mtSet_simPheno=limix.scripts.mtSet_simPheno:entry_point',
-                'mtSet_analyze=limix.scripts.mtSet_analyze:entry_point',
-                'limix_converter=limix.scripts.limix_converter:entry_point',
-                'iSet_analyze=limix.scripts.iSet_analyze:entry_point',
-                'iSet_postprocess=limix.scripts.iSet_postprocess:entry_point',
+                'limix_runner=limix_legacy.scripts.limix_runner:entry_point',
+                'mtSet_postprocess=limix_legacy.scripts.mtSet_postprocess:entry_point',
+                'mtSet_preprocess=limix_legacy.scripts.mtSet_preprocess:entry_point',
+                'mtSet_simPheno=limix_legacy.scripts.mtSet_simPheno:entry_point',
+                'mtSet_analyze=limix_legacy.scripts.mtSet_analyze:entry_point',
+                'limix_converter=limix_legacy.scripts.limix_converter:entry_point',
+                'iSet_analyze=limix_legacy.scripts.iSet_analyze:entry_point',
+                'iSet_postprocess=limix_legacy.scripts.iSet_postprocess:entry_point',
             ]
         },
         classifiers=[
