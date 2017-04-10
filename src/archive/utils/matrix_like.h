@@ -3,7 +3,7 @@
 
 #include <math.h>
 #include <cmath>
-#include "limix/types.h"
+#include "limix_legacy/types.h"
 
 namespace limix{
 

@@ -5,9 +5,9 @@
 // See LICENSE for the complete license.
 
 #include "kronecker_lmm_old.h"
-#include "limix/utils/gamma.h"
-#include "limix/utils/fisherf.h"
-#include "limix/mean/CKroneckerMean.h"
+#include "limix_legacy/utils/gamma.h"
+#include "limix_legacy/utils/fisherf.h"
+#include "limix_legacy/mean/CKroneckerMean.h"
 
 //RTTI support
 #include <typeinfo>

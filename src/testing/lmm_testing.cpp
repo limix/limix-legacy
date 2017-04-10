@@ -16,12 +16,12 @@
 
 
 #include <iostream>
-#include "limix/types.h"
-#include "limix/covar/covariance.h"
-#include "limix/covar/linear.h"
-#include "limix/utils/matrix_helper.h"
-#include "limix/LMM/lmm.h"
-#include "limix/LMM/lmm_old.h"
+#include "limix_legacy/types.h"
+#include "limix_legacy/covar/covariance.h"
+#include "limix_legacy/covar/linear.h"
+#include "limix_legacy/utils/matrix_helper.h"
+#include "limix_legacy/LMM/lmm.h"
+#include "limix_legacy/LMM/lmm_old.h"
 using namespace limix;
 
 using namespace std;

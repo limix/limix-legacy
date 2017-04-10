@@ -17,8 +17,8 @@
 //#define debugkron 1
 
 #include <iostream>
-#include "limix/types.h"
-#include "limix/LMM/kronecker_lmm.h"
+#include "limix_legacy/types.h"
+#include "limix_legacy/LMM/kronecker_lmm.h"
 
 using namespace std;
 using namespace limix;

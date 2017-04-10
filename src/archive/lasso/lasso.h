@@ -7,7 +7,7 @@
 #ifndef LASSO_H_
 #define LASSO_H_
 
-#include "limix/types.h"
+#include "limix_legacy/types.h"
 
 
 namespace limix {

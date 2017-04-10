@@ -7,11 +7,11 @@
 #ifndef CVQTL_H_
 #define CVQTL_H_
 
-#include "limix/types.h"
-#include "limix/gp/gp_base.h"
-#include "limix/covar/linear.h"
-#include "limix/covar/combinators.h"
-#include "limix/covar/freeform.h"
+#include "limix_legacy/types.h"
+#include "limix_legacy/gp/gp_base.h"
+#include "limix_legacy/covar/linear.h"
+#include "limix_legacy/covar/combinators.h"
+#include "limix_legacy/covar/freeform.h"
 
 
 

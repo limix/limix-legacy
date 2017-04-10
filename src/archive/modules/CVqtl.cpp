@@ -5,8 +5,8 @@
 // See LICENSE for the complete license.
 
 #include "CVqtl.h"
-#include "limix/utils/matrix_helper.h"
-#include "limix/gp/gp_opt.h"
+#include "limix_legacy/utils/matrix_helper.h"
+#include "limix_legacy/gp/gp_opt.h"
 
 namespace limix {
 /*

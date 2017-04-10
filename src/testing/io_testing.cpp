@@ -15,17 +15,17 @@
 #if 1
 
 #include <iostream>
-#include "limix/types.h"
-#include "limix/covar/covariance.h"
-#include "limix/covar/linear.h"
-#include "limix/utils/matrix_helper.h"
-#include "limix/modules/CVarianceDecomposition.h"
-#include "limix/io/genotype.h"
+#include "limix_legacy/types.h"
+#include "limix_legacy/covar/covariance.h"
+#include "limix_legacy/covar/linear.h"
+#include "limix_legacy/utils/matrix_helper.h"
+#include "limix_legacy/modules/CVarianceDecomposition.h"
+#include "limix_legacy/io/genotype.h"
 #include <string>
 #include <iostream>
 
 
-#include "limix/types.h"
+#include "limix_legacy/types.h"
 
 
 using namespace std;

@@ -15,13 +15,13 @@
 #if 0
 
 #include <iostream>
-#include "limix/gp/gp_base.h"
-#include "limix/types.h"
-#include "limix/utils/matrix_helper.h"
-#include "limix/likelihood/likelihood.h"
-#include "limix/covar/linear.h"
-#include "limix/gp/gp_base.h"
-#include "limix/lasso/lasso.h"
+#include "limix_legacy/gp/gp_base.h"
+#include "limix_legacy/types.h"
+#include "limix_legacy/utils/matrix_helper.h"
+#include "limix_legacy/likelihood/likelihood.h"
+#include "limix_legacy/covar/linear.h"
+#include "limix_legacy/gp/gp_base.h"
+#include "limix_legacy/lasso/lasso.h"
 
 
 using namespace std;

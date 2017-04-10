@@ -7,10 +7,10 @@
 #ifndef KRONECKER_LMM_OLD_H_
 #define KRONECKER_LMM_OLD_H_
 
-#include "limix/LMM/lmm.h"
-#include "limix/gp/gp_kronecker.h"
-#include "limix/mean/CKroneckerMean.h"
-#include "limix/LMM/CGPLMM.h"
+#include "limix_legacy/LMM/lmm.h"
+#include "limix_legacy/gp/gp_kronecker.h"
+#include "limix_legacy/mean/CKroneckerMean.h"
+#include "limix_legacy/LMM/CGPLMM.h"
 
 namespace limix {
 

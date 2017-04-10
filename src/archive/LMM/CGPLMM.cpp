@@ -5,7 +5,7 @@
 // See LICENSE for the complete license.
 
 #include "CGPLMM.h"
-#include "limix/utils/gamma.h"
+#include "limix_legacy/utils/gamma.h"
 
 namespace limix {
 /*GPLMM*/

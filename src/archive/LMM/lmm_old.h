@@ -14,12 +14,12 @@
 #include <cmath>
 
 #include "Eigen/Eigen"
-#include "limix/types.h"
-#include "limix/utils/mathfunctions.h"
-#include "limix/utils/gamma.h"
-#include "limix/utils/beta.h"
-#include "limix/utils/fisherf.h"
-#include "limix/utils/brentc.h"
+#include "limix_legacy/types.h"
+#include "limix_legacy/utils/mathfunctions.h"
+#include "limix_legacy/utils/gamma.h"
+#include "limix_legacy/utils/beta.h"
+#include "limix_legacy/utils/fisherf.h"
+#include "limix_legacy/utils/brentc.h"
 
 namespace lmm_old {
 

@@ -7,11 +7,11 @@
 #ifndef CGPLMM_H_
 #define CGPLMM_H_
 
-#include "limix/LMM/lmm.h"
-#include "limix/gp/gp_kronecker.h"
-#include "limix/gp/gp_opt.h"
-#include "limix/mean/CKroneckerMean.h"
-#include "limix/mean/CSumLinear.h"
+#include "limix_legacy/LMM/lmm.h"
+#include "limix_legacy/gp/gp_kronecker.h"
+#include "limix_legacy/gp/gp_opt.h"
+#include "limix_legacy/mean/CKroneckerMean.h"
+#include "limix_legacy/mean/CSumLinear.h"
 
 
 

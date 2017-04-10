@@ -14,20 +14,20 @@
 #if 0
 
 #include <iostream>
-#include "limix/gp/gp_base.h"
-#include "limix/gp/gp_opt.h"
-#include "limix/types.h"
-#include "limix/likelihood/likelihood.h"
-#include "limix/gp/gp_base.h"
-#include "limix/gp/gp_kronecker.h"
-#include "limix/utils/matrix_helper.h"
-#include "limix/covar/linear.h"
-#include "limix/covar/se.h"
-#include "limix/covar/fixed.h"
-#include "limix/covar/combinators.h"
-#include "limix/mean/CData.h"
-#include "limix/mean/CKroneckerMean.h"
-#include "limix/utils/logging.h"
+#include "limix_legacy/gp/gp_base.h"
+#include "limix_legacy/gp/gp_opt.h"
+#include "limix_legacy/types.h"
+#include "limix_legacy/likelihood/likelihood.h"
+#include "limix_legacy/gp/gp_base.h"
+#include "limix_legacy/gp/gp_kronecker.h"
+#include "limix_legacy/utils/matrix_helper.h"
+#include "limix_legacy/covar/linear.h"
+#include "limix_legacy/covar/se.h"
+#include "limix_legacy/covar/fixed.h"
+#include "limix_legacy/covar/combinators.h"
+#include "limix_legacy/mean/CData.h"
+#include "limix_legacy/mean/CKroneckerMean.h"
+#include "limix_legacy/utils/logging.h"
 #include <vector>
 
 
