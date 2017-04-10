@@ -1,5 +1,5 @@
 import unittest
-import limix 
+import limix_legacy
 import scipy as sp
 import scipy.linalg as LA
 import pdb
@@ -9,15 +9,15 @@ dir_name = os.path.dirname(os.path.realpath(__file__))
 base_folder = os.path.join(dir_name, 'data')
 
 class TestMTSet(unittest.TestCase):
-    """test class for optimization""" 
-    
+    """test class for optimization"""
+
     def setUp(self):
         sp.random.seed(0)
-        self.Y = sp.loadtxt(os.path.join(base_folder, 'Y.txt')) 
-        self.XX = sp.loadtxt(os.path.join(base_folder, 'XX.txt')) 
-        self.Xr = sp.loadtxt(os.path.join(base_folder, 'Xr.txt')) 
+        self.Y = sp.loadtxt(os.path.join(base_folder, 'Y.txt'))
+        self.XX = sp.loadtxt(os.path.join(base_folder, 'XX.txt'))
+        self.Xr = sp.loadtxt(os.path.join(base_folder, 'Xr.txt'))
         self.N,self.P = self.Y.shape
-        self.write = False 
+        self.write = False
 
     def test_mtSetNull(self):
         fbasename = 'mtSetNull'
@@ -99,26 +99,25 @@ class TestMTSet(unittest.TestCase):
         self.assertTrue(RV)
 
     def saveStuff(self,fbasename,ext):
-        """ util function """ 
+        """ util function """
         base = os.path.join(base_folder, 'res_'+fbasename+'_')
-        for key in list(ext.keys()): 
+        for key in list(ext.keys()):
             sp.savetxt(base+key+'.txt',ext[key])
 
     def loadStuff(self,fbasename,keys):
-        """ util function """ 
+        """ util function """
         RV = {}
         base = os.path.join(base_folder, 'res_'+fbasename+'_')
-        for key in keys: 
+        for key in keys:
             RV[key] = sp.loadtxt(base+key+'.txt')
         return RV
 
     def assess(self,fbasename,ext):
         """ returns a bool vector """
-        real = self.loadStuff(fbasename,list(ext.keys())) 
+        real = self.loadStuff(fbasename,list(ext.keys()))
         RV = sp.all([((ext[key]-real[key])**2).mean()<1e-6 for key in list(ext.keys())])
         if not RV:  pdb.set_trace()
         return RV
 
 if __name__ == '__main__':
     unittest.main()
-
