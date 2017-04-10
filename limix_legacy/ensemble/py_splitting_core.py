@@ -7,7 +7,7 @@ import sys
 import numpy as NP
 import scipy as SP
 from . import lmm_fast
-import limix
+import limix_legacy
 from limix_legacy.ensemble import SplittingCore as CSP
 
 def is_leaf(node_ind, child_nodes):

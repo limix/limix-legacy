@@ -1,2 +1,2 @@
-.. automodule:: limix.io
+.. automodule:: limix_legacy.io
   :members:

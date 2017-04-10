@@ -9,11 +9,11 @@ import numpy as np
 import numpy.linalg as la
 from optparse import OptionParser
 import time
-import limix
+import limix_legacy
 from .read_utils import readBimFile
 from .read_utils import readCovarianceMatrixFile
 from .read_utils import readPhenoFile
-from .read_utils import readCovariatesFile 
+from .read_utils import readCovariatesFile
 from .splitter_bed import splitGeno
 from . import plink_reader
 import scipy as sp
@@ -249,7 +249,7 @@ def fit_null(Y,S_XX,U_XX,nfile,F):
     S_XX    eigenvalues of the relatedness matrix
     U_XX    eigen vectors of the relatedness matrix
     """
-    mtSet = limix.MTSet(Y, S_R=S_XX, U_R=U_XX, F=F)
+    mtSet = limix_legacy.MTSet(Y, S_R=S_XX, U_R=U_XX, F=F)
 
     RV = mtSet.fitNull(cache=False)
     params = np.array([RV['params0_g'],RV['params0_n']])

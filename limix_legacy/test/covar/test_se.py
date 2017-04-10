@@ -2,7 +2,7 @@
 import unittest
 import scipy as SP
 import pdb
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 from .covar import Acovar_test
 
 class CCovSqexpARD_test(unittest.TestCase,Acovar_test):
@@ -12,7 +12,7 @@ class CCovSqexpARD_test(unittest.TestCase,Acovar_test):
         self.n=10
         self.n_dim=10
         X=SP.rand(self.n,self.n_dim)
-        self.C = dlimix.CCovSqexpARD(self.n_dim)
+        self.C = dlimix_legacy.CCovSqexpARD(self.n_dim)
         self.name = 'CCovSqexpARD'
         self.C.setX(X)
         K = self.C.K()

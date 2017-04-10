@@ -23,20 +23,20 @@ if __name__ == '__main__':
 
     K0 = SP.eye(Y.shape[0])
     X0 = SP.randn(Y.shape[0],3)
-    covar1 = limix.CCovLinearISO(3)
+    covar1 = limix_legacy.CCovLinearISO(3)
     covar1.setParams(SP.array([1.0]))
     covar1.setX(X0)
-    covar2 = limix.CFixedCF(K0)
+    covar2 = limix_legacy.CFixedCF(K0)
     covar2.setParams(SP.array([1.0]))
 
-    covar=limix.CSumCF()
+    covar=limix_legacy.CSumCF()
     covar.addCovariance(covar2)
     covar.addCovariance(covar1)
 
-    ll  = limix.CLikNormalIso()
-    gp=limix.CGPbase(covar,ll)
+    ll  = limix_legacy.CLikNormalIso()
+    gp=limix_legacy.CGPbase(covar,ll)
 
-    hyperparams = limix.CGPHyperParams()
+    hyperparams = limix_legacy.CGPHyperParams()
     hyperparams['covar'] = SP.array([1.0,1.0])
     hyperparams['lik'] = SP.array([0.1])
     hyperparams['X']   = X0

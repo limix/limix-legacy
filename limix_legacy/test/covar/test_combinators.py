@@ -3,7 +3,7 @@ import unittest
 import scipy as SP
 import pdb
 import sys
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 from .covar import Acovar_test
 
 class CSumCF_test(unittest.TestCase,Acovar_test):
@@ -13,9 +13,9 @@ class CSumCF_test(unittest.TestCase,Acovar_test):
         self.n=10
         n_dim1=8
         n_dim2=12
-        self.C=dlimix.CSumCF()
-        self.C.addCovariance(dlimix.CCovSqexpARD(n_dim1));
-        self.C.addCovariance(dlimix.CCovLinearARD(n_dim2));
+        self.C=dlimix_legacy.CSumCF()
+        self.C.addCovariance(dlimix_legacy.CCovSqexpARD(n_dim1));
+        self.C.addCovariance(dlimix_legacy.CCovLinearARD(n_dim2));
         self.n_dim=self.C.getNumberDimensions()
         X=SP.rand(self.n,self.n_dim)
         self.C.setX(X)
@@ -31,9 +31,9 @@ class CProductCF_test(unittest.TestCase,Acovar_test):
         self.n=10
         n_dim1=8
         n_dim2=12
-        self.C=dlimix.CProductCF()
-        self.C.addCovariance(dlimix.CCovSqexpARD(n_dim1));
-        self.C.addCovariance(dlimix.CCovLinearARD(n_dim2));
+        self.C=dlimix_legacy.CProductCF()
+        self.C.addCovariance(dlimix_legacy.CCovSqexpARD(n_dim1));
+        self.C.addCovariance(dlimix_legacy.CCovLinearARD(n_dim2));
         self.n_dim=self.C.getNumberDimensions()
         X=SP.rand(self.n,self.n_dim)
         self.C.setX(X)
@@ -50,10 +50,10 @@ class CMixedX_test(unittest.TestCase,Acovar_test):
         self.n=10
         n_dim2=12
         K0 = SP.eye(self.n)
-        self.C=dlimix.CSumCF()
+        self.C=dlimix_legacy.CSumCF()
         #sum of fixed CF and linearARD
-        covar1 = dlimix.CFixedCF(K0)
-        covar2 = dlimix.CCovLinearARD(n_dim2)
+        covar1 = dlimix_legacy.CFixedCF(K0)
+        covar2 = dlimix_legacy.CCovLinearARD(n_dim2)
         self.C.addCovariance(covar1)
         self.C.addCovariance(covar2)
         self.n_dim=self.C.getNumberDimensions()
@@ -79,9 +79,9 @@ class CKroneckerCF_test(unittest.TestCase,Acovar_test):
         n_dim2=12
         X1 = SP.rand(n1,n_dim1)
         X2 = SP.rand(n2,n_dim2)
-        C1 = dlimix.CCovSqexpARD(n_dim1); C1.setX(X1)
-        C2 = dlimix.CCovLinearARD(n_dim2);  C2.setX(X2)
-        self.C = dlimix.CKroneckerCF()
+        C1 = dlimix_legacy.CCovSqexpARD(n_dim1); C1.setX(X1)
+        C2 = dlimix_legacy.CCovLinearARD(n_dim2);  C2.setX(X2)
+        self.C = dlimix_legacy.CKroneckerCF()
         self.C.setRowCovariance(C1)
         self.C.setColCovariance(C2)
         self.n = self.C.Kdim()
@@ -103,13 +103,13 @@ class CKroneckerCFsoft_test(unittest.TestCase,Acovar_test):
         self.n_trunk = 10
         Xr = SP.rand(nr,n_dim1)
         Xc = SP.rand(nc,n_dim2)
-        Cr = dlimix.CCovSqexpARD(n_dim1); Cr.setX(Xr)
-        Cc = dlimix.CCovLinearARD(n_dim2);  Cc.setX(Xc)
-        self.C = dlimix.CKroneckerCF()
+        Cr = dlimix_legacy.CCovSqexpARD(n_dim1); Cr.setX(Xr)
+        Cc = dlimix_legacy.CCovLinearARD(n_dim2);  Cc.setX(Xc)
+        self.C = dlimix_legacy.CKroneckerCF()
         self.C.setRowCovariance(Cr)
         self.C.setColCovariance(Cc)
         #set kronecker index
-        self.kronecker_index = dlimix.CKroneckerCF.createKroneckerIndex(nc,nr)
+        self.kronecker_index = dlimix_legacy.CKroneckerCF.createKroneckerIndex(nc,nr)
         self.n = self.C.Kdim()
         self.n_dim=self.C.getNumberDimensions()
         self.name = 'CKroneckerCF'

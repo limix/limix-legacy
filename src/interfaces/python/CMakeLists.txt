@@ -78,10 +78,10 @@ if (GOOGLE_PERF)
 SET(SWIGLINKLIBS profiler)
 endif (GOOGLE_PERF)
 
-set_source_files_properties(limix.i PROPERTIES CPLUSPLUS ON)
-set_source_files_properties(limix.i PROPERTIES SWIG_FLAGS "-includeall")
-set_source_files_properties(limix.i PROPERTIES SWIG_FLAGS "-cpperraswarn")
-swig_add_module(core python limix.i)
+set_source_files_properties(limix_legacy.i PROPERTIES CPLUSPLUS ON)
+set_source_files_properties(limix_legacy.i PROPERTIES SWIG_FLAGS "-includeall")
+set_source_files_properties(limix_legacy.i PROPERTIES SWIG_FLAGS "-cpperraswarn")
+swig_add_module(core python limix_legacy.i)
 swig_link_libraries(core limixlib nlopt ${SWIGLINKLIBS} ${ZLIB_LIBRARIES})
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")	 
@@ -109,8 +109,8 @@ ADD_CUSTOM_COMMAND(
         ${CMAKE_CURRENT_BINARY_DIR}/limix/_core.so)
 
 #Install python .so and python wrapper
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/_limix.so DESTINATION ${PYTHON_INSTDIR})
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/limix.py DESTINATION ${PYTHON_INSTDIR})
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/_limix_legacy.so DESTINATION ${PYTHON_INSTDIR})
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/limix_legacy.py DESTINATION ${PYTHON_INSTDIR})
 #install demo into the build directory
 
 endif(BUILD_PYTHON_PACKAGE)

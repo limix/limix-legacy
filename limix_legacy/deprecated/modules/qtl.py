@@ -17,10 +17,10 @@ qtl.py contains wrappers around C++ Limix objects to streamline common tasks in 
 
 import numpy as np
 import scipy.stats as st
-import limix
+import limix_legacy
 import scipy as sp
 import limix_legacy.deprecated
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 import limix_legacy.deprecated.utils.preprocess as preprocess
 import limix_legacy.deprecated.stats.fdr as FDR
 from . import varianceDecomposition as VAR
@@ -51,7 +51,7 @@ class lmm:
 		if len(pheno.shape)==1:
 			pheno = pheno[:,sp.newaxis]
 
-		self.verbose = dlimix.getVerbose(verbose)
+		self.verbose = dlimix_legacy.getVerbose(verbose)
 		self.snps = snps
 		self.pheno = pheno
 		self.K = K
@@ -517,7 +517,7 @@ def forward_lmm(snps,pheno,K=None,covs=None,qvalues=False,threshold=5e-8,maxiter
                                 before inclusion
                 RV['pvall']:    [Nadded x S] np.array of Pvalues for all iterations
     """
-    verbose = dlimix.getVerbose(verbose)
+    verbose = dlimix_legacy.getVerbose(verbose)
 
     if K is None:
         K=np.eye(snps.shape[0])
@@ -613,7 +613,7 @@ def forward_lmm_kronecker(snps,phenos,Asnps=None,Acond=None,K1r=None,K1c=None,K2
             qvadded
             qvall
     """
-    verbose = dlimix.getVerbose(verbose)
+    verbose = dlimix_legacy.getVerbose(verbose)
     #0. checks
     N  = phenos.shape[0]
     P  = phenos.shape[1]
@@ -968,7 +968,7 @@ def qtl_test_interaction_GxE_1dof(snps,pheno,env,K=None,covs=None, test='lrt',ve
         pv:     [E x S] np.array of P values for interaction tests between all
                 E environmental variables and all S SNPs
     """
-    verbose = dlimix.getVerbose(verbose)
+    verbose = dlimix_legacy.getVerbose(verbose)
     N=snps.shape[0]
     if K is None:
         K=np.eye(N)

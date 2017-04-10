@@ -2,7 +2,7 @@
 import unittest
 import scipy as SP
 import pdb
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 from .covar import Acovar_test
 
 class CLikelihoodISO_test(unittest.TestCase,Acovar_test):
@@ -12,7 +12,7 @@ class CLikelihoodISO_test(unittest.TestCase,Acovar_test):
         self.n=10
         self.n_dim=10
         X=SP.rand(self.n,self.n_dim)
-        self.C = dlimix.CLikNormalIso()
+        self.C = dlimix_legacy.CLikNormalIso()
         self.name = 'CLikNormalIso'
         self.C.setX(X)
         self.n_params=self.C.getNumberParams()

@@ -16,7 +16,7 @@ import sys
 import scipy as sp
 import scipy.linalg
 import scipy.stats
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 import limix_legacy.deprecated.utils.preprocess as preprocess
 import pdb
 import time
@@ -66,7 +66,7 @@ class VarianceDecomposition:
             Y=preprocess.standardize(Y)
 
         self.Y  = Y
-        self.vd = dlimix.CVarianceDecomposition(Y)
+        self.vd = dlimix_legacy.CVarianceDecomposition(Y)
         self.n_randEffs  = 0
         self.n_fixedEffs = 0
         self.gp      = None
@@ -174,7 +174,7 @@ class VarianceDecomposition:
             if Kcross is not None: Kcross *= Norm
 
         if self.P==1:
-            self.vd.addTerm(dlimix.CSingleTraitTerm(K))
+            self.vd.addTerm(dlimix_legacy.CSingleTraitTerm(K))
         else:
             assert jitter>=0, 'VarianceDecomposition:: jitter must be >=0'
             cov,diag = self._buildTraitCovar(trait_covar_type=trait_covar_type,rank=rank,fixed_trait_covar=fixed_trait_covar,jitter=jitter,d=d)
@@ -295,7 +295,7 @@ class VarianceDecomposition:
             perturbSize:    std of the gassian noise used to perturb the initial point
             verbose:        print if convergence is achieved and how many restarted were needed
         """
-        verbose = dlimix.getVerbose(verbose)
+        verbose = dlimix_legacy.getVerbose(verbose)
 
 
         if init_method is None:
@@ -361,7 +361,7 @@ class VarianceDecomposition:
             verbose:    Boolean. If set to True, verbose output is produced. (default True)
             n_times:    number of re-starts of the optimization. (default 10)
         """
-        verbose = dlimix.getVerbose(verbose)
+        verbose = dlimix_legacy.getVerbose(verbose)
 
         if not self.init:       self._initGP(fast)
 
@@ -656,7 +656,7 @@ class VarianceDecomposition:
         Returns:
             Matrix of phenotype predictions [N,P]
         """
-        verbose = dlimix.getVerbose(verbose)
+        verbose = dlimix_legacy.getVerbose(verbose)
 
         # split samples into training and test
         sp.random.seed(seed)
@@ -763,58 +763,58 @@ class VarianceDecomposition:
             LIMIX::PCovarianceFunction for Trait covariance matrix
             vector labelling Cholesky parameters for different initializations
         """
-        cov = dlimix.CSumCF()
+        cov = dlimix_legacy.CSumCF()
         if trait_covar_type=='freeform':
-            cov.addCovariance(dlimix.CFreeFormCF(self.P))
+            cov.addCovariance(dlimix_legacy.CFreeFormCF(self.P))
             L = sp.eye(self.P)
             diag = sp.concatenate([L[i,:(i+1)] for i in range(self.P)])
         elif trait_covar_type=='fixed':
             assert fixed_trait_covar is not None, 'VarianceDecomposition:: set fixed_trait_covar'
             assert fixed_trait_covar.shape[0]==self.N, 'VarianceDecomposition:: Incompatible shape for fixed_trait_covar'
             assert fixed_trait_covar.shape[1]==self.N, 'VarianceDecomposition:: Incompatible shape for fixed_trait_covar'
-            cov.addCovariance(dlimix.CFixedCF(fixed_trait_covar))
+            cov.addCovariance(dlimix_legacy.CFixedCF(fixed_trait_covar))
             diag = sp.zeros(1)
         elif trait_covar_type=='diag':
-            cov.addCovariance(dlimix.CDiagonalCF(self.P))
+            cov.addCovariance(dlimix_legacy.CDiagonalCF(self.P))
             diag = sp.ones(self.P)
         elif trait_covar_type=='lowrank':
-            cov.addCovariance(dlimix.CLowRankCF(self.P,rank))
+            cov.addCovariance(dlimix_legacy.CLowRankCF(self.P,rank))
             diag = sp.zeros(self.P*rank)
         elif trait_covar_type=='lowrank_id':
-            cov.addCovariance(dlimix.CLowRankCF(self.P,rank))
-            cov.addCovariance(dlimix.CFixedCF(sp.eye(self.P)))
+            cov.addCovariance(dlimix_legacy.CLowRankCF(self.P,rank))
+            cov.addCovariance(dlimix_legacy.CFixedCF(sp.eye(self.P)))
             diag = sp.concatenate([sp.zeros(self.P*rank),sp.ones(1)])
         elif trait_covar_type=='lowrank_diag':
-            cov.addCovariance(dlimix.CLowRankCF(self.P,rank))
-            cov.addCovariance(dlimix.CDiagonalCF(self.P))
+            cov.addCovariance(dlimix_legacy.CLowRankCF(self.P,rank))
+            cov.addCovariance(dlimix_legacy.CDiagonalCF(self.P))
             diag = sp.concatenate([sp.zeros(self.P*rank),sp.ones(self.P)])
         elif trait_covar_type=='lowrank_diag1':
             assert d.shape[0]==self.P, 'dimension mismatch for d'
-            cov1 = dlimix.CSumCF()
-            cov1.addCovariance(dlimix.CLowRankCF(self.P,rank))
-            cov1.addCovariance(dlimix.CDiagonalCF(self.P))
-            cov.addCovariance(dlimix.CFixedDiagonalCF(cov1,d))
+            cov1 = dlimix_legacy.CSumCF()
+            cov1.addCovariance(dlimix_legacy.CLowRankCF(self.P,rank))
+            cov1.addCovariance(dlimix_legacy.CDiagonalCF(self.P))
+            cov.addCovariance(dlimix_legacy.CFixedDiagonalCF(cov1,d))
             diag = sp.concatenate([sp.zeros(self.P*rank),sp.ones(self.P)])
         elif trait_covar_type=='freeform1':
             assert d.shape[0]==self.P, 'dimension mismatch for d'
-            cov.addCovariance(dlimix.CFixedDiagonalCF(dlimix.CFreeFormCF(self.P),d))
+            cov.addCovariance(dlimix_legacy.CFixedDiagonalCF(dlimix_legacy.CFreeFormCF(self.P),d))
             L = sp.eye(self.P)
             diag = sp.concatenate([L[i,:(i+1)] for i in range(self.P)])
         elif trait_covar_type=='block':
-            cov.addCovariance(dlimix.CFixedCF(sp.ones((self.P,self.P))))
+            cov.addCovariance(dlimix_legacy.CFixedCF(sp.ones((self.P,self.P))))
             diag = sp.zeros(1)
         elif trait_covar_type=='block_id':
-            cov.addCovariance(dlimix.CFixedCF(sp.ones((self.P,self.P))))
-            cov.addCovariance(dlimix.CFixedCF(sp.eye(self.P)))
+            cov.addCovariance(dlimix_legacy.CFixedCF(sp.ones((self.P,self.P))))
+            cov.addCovariance(dlimix_legacy.CFixedCF(sp.eye(self.P)))
             diag = sp.concatenate([sp.zeros(1),sp.ones(1)])
         elif trait_covar_type=='block_diag':
-            cov.addCovariance(dlimix.CFixedCF(sp.ones((self.P,self.P))))
-            cov.addCovariance(dlimix.CDiagonalCF(self.P))
+            cov.addCovariance(dlimix_legacy.CFixedCF(sp.ones((self.P,self.P))))
+            cov.addCovariance(dlimix_legacy.CDiagonalCF(self.P))
             diag = sp.concatenate([sp.zeros(1),sp.ones(self.P)])
         else:
             assert True==False, 'VarianceDecomposition:: trait_covar_type not valid'
         if jitter>0:
-            _cov = dlimix.CFixedCF(sp.eye(self.P))
+            _cov = dlimix_legacy.CFixedCF(sp.eye(self.P))
             _cov.setParams(sp.array([sp.sqrt(jitter)]))
             _cov.setParamMask(sp.zeros(1))
             cov.addCovariance(_cov)
@@ -832,7 +832,7 @@ class VarianceDecomposition:
         Args:
             K:        covariance matrix of the non-noise random effect term
         """
-        verbose = dlimix.getVerbose(verbose)
+        verbose = dlimix_legacy.getVerbose(verbose)
         # Fit single trait model
         varg  = sp.zeros(self.P)
         varn  = sp.zeros(self.P)
@@ -847,7 +847,7 @@ class VarianceDecomposition:
                 _K = K[~I,:][:,~I]
             else:
                 _K  = copy.copy(K)
-            lmm = dlimix.CLMM()
+            lmm = dlimix_legacy.CLMM()
             lmm.setK(_K)
             lmm.setSNPs(sp.ones((y.shape[0],1)))
             lmm.setPheno(y)

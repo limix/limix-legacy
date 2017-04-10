@@ -1,5 +1,5 @@
 import sys
-import limix
+import limix_legacy
 from limix_legacy.core.covar import LowRankCov
 from limix_legacy.core.covar import FixedCov
 from limix_legacy.core.covar import FreeFormCov
@@ -7,7 +7,7 @@ from limix_legacy.core.gp import GP3KronSumLR
 from limix_legacy.core.gp import GP2KronSum
 import scipy as sp
 import scipy.stats as st
-from limix_legacy.mtSet.core.iset_utils import * 
+from limix_legacy.mtSet.core.iset_utils import *
 import numpy as np
 import numpy.linalg as nla
 import scipy.linalg as la
@@ -59,7 +59,7 @@ class MvSetTestFull():
         self.Ug = Ug
         self.Sg = Sg
         self.covY = sp.cov(Y.T)
-        self.factr = factr 
+        self.factr = factr
         self.debug = debug
         self.gp = {}
         self.info = {}
@@ -67,7 +67,7 @@ class MvSetTestFull():
         self.trRg = ((self.Ug*self.Sg**0.5)**2).sum()
 
     def assoc(self):
-        # fit model 
+        # fit model
         for key in ['null', 'full']:
             if key not in list(self.gp.keys()):
                 if self.debug:      print('.. dening %s' % key)
@@ -77,7 +77,7 @@ class MvSetTestFull():
         return self.info['null']['LML']-self.info['full']['LML']
 
     def gxe(self):
-        # fit model 
+        # fit model
         for key in ['null', 'full', 'block']:
             if key not in list(self.gp.keys()):
                 if self.debug:      print('.. defining %s' % key)
@@ -153,17 +153,17 @@ class MvSetTestFull():
                 'Cn': self.gp[type].covar.Cn.K(),
                 'LML': sp.array([self.gp[type].LML()]),
                 'LMLgrad': sp.array([sp.mean((self.gp[type].LML_grad()['covar'])**2)])}
-        if type=='null':        RV['Cr'] = sp.zeros(RV['Cg'].shape) 
-        else:                   RV['Cr'] = self.gp[type].covar.Cr.K() 
+        if type=='null':        RV['Cr'] = sp.zeros(RV['Cg'].shape)
+        else:                   RV['Cr'] = self.gp[type].covar.Cr.K()
         if vc:
             # tr(P CoR) = tr(C)tr(R) - tr(Ones C) tr(Ones R) / float(NP)
             #           = tr(C)tr(R) - C.sum() * R.sum() / float(NP)
             trRr = (self.Xr**2).sum()
             var_r = sp.trace(RV['Cr'])*trRr / float(self.Y.size-1)
             var_g = sp.trace(RV['Cg'])*self.trRg / float(self.Y.size-1)
-            var_n = sp.trace(RV['Cn'])*self.Y.shape[0] 
+            var_n = sp.trace(RV['Cn'])*self.Y.shape[0]
             var_n-= RV['Cn'].sum() / float(RV['Cn'].shape[0])
-            var_n/= float(self.Y.size-1) 
+            var_n/= float(self.Y.size-1)
             RV['var'] = sp.array([var_r, var_g, var_n])
             if 0 and self.Y.size<5000:
                 pdb.set_trace()
@@ -174,7 +174,7 @@ class MvSetTestFull():
                 _var = sp.array([_var_r, var_g, _var_n])
                 print(((_var-RV['var'])**2).mean())
             if type=='full':
-                # calculate within region vcs 
+                # calculate within region vcs
                 Cr_block = sp.mean(RV['Cr']) * sp.ones(RV['Cr'].shape)
                 Cr_rank1 = lowrank_approx(RV['Cr'], rank=1)
                 var_block = sp.trace(Cr_block)*trRr / float(self.Y.size-1)
@@ -214,4 +214,3 @@ if __name__=='__main__':
         print(time.time()-t0)
 
         pdb.set_trace()
-

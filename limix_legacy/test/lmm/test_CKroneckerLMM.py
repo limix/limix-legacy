@@ -3,7 +3,7 @@ import unittest
 import scipy as SP
 import pdb
 import limix
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 from limix_legacy.test import data
 import os
 
@@ -31,7 +31,7 @@ class CKroneckerLMM_test(unittest.TestCase):
             X      = D['X']
             Y      = D['Y'][:,SP.newaxis]
 
-            lmm = dlimix.CKroneckerLMM()
+            lmm = dlimix_legacy.CKroneckerLMM()
             lmm.setK1r(K1r)
             lmm.setK1c(K1c)
             lmm.setK2r(K2r)
@@ -81,7 +81,7 @@ class CKroneckerLMM_test(unittest.TestCase):
             Y      = D['Y'][:,SP.newaxis]
             Y      = SP.tile(Y,(1,P))
 
-            lmm = dlimix.CKroneckerLMM()
+            lmm = dlimix_legacy.CKroneckerLMM()
             lmm.setK1r(K1r)
             lmm.setK1c(K1c)
             lmm.setK2r(K2r)
@@ -122,7 +122,7 @@ class CKroneckerLMM_test(unittest.TestCase):
             D = data.load(os.path.join(self.dir_name,dn))
             perm = SP.random.permutation(D['X'].shape[0])
             #1. set permuattion
-            lmm = dlimix.CLMM()
+            lmm = dlimix_legacy.CLMM()
             lmm.setK(D['K'])
             lmm.setSNPs(D['X'])
             lmm.setCovs(D['Cov'])
@@ -134,7 +134,7 @@ class CKroneckerLMM_test(unittest.TestCase):
             lmm.process()
             pv_perm1 = lmm.getPv().ravel()
             #2. do by hand
-            lmm = dlimix.CLMM()
+            lmm = dlimix_legacy.CLMM()
             lmm.setK(D['K'])
             lmm.setSNPs(D['X'][perm])
             lmm.setCovs(D['Cov'])

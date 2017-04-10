@@ -3,7 +3,7 @@ import unittest
 class TestModules(unittest.TestCase):
     def test_variance_decomposition_import(self):
         try:
-            import limix.modules.varianceDecomposition as vd
+            import limix_legacy.modules.varianceDecomposition as vd
         except ImportError:
             self.fail()
 

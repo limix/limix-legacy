@@ -1,9 +1,9 @@
 import scipy as sp
-from limix.core.covar import Cov3KronSumLR
-from limix.core.covar import FreeFormCov 
-from limix.core.gp import GP3KronSumLR
-from limix.core.gp import GP
-from limix.utils.preprocess import covar_rescale
+from limix_legacy.core.covar import Cov3KronSumLR
+from limix_legacy.core.covar import FreeFormCov 
+from limix_legacy.core.gp import GP3KronSumLR
+from limix_legacy.core.gp import GP
+from limix_legacy.utils.preprocess import covar_rescale
 import time
 import copy
 import pdb

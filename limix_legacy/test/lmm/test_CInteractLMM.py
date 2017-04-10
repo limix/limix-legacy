@@ -3,7 +3,7 @@ import unittest
 import scipy as SP
 import pdb
 import limix
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 from limix_legacy.test import data
 import os
 
@@ -25,7 +25,7 @@ class CIntearctLMM_test(unittest.TestCase):
             N = D['X'].shape[0]
             inter0 = SP.zeros([N,0])#fixed verion: all 0 feature did not work: #inter0 = SP.zeros([N,1])N-by-0 matrix instead of N-by-1 works
             inter1 = SP.ones([N,1])
-            lmm = dlimix.CInteractLMM()
+            lmm = dlimix_legacy.CInteractLMM()
             lmm.setK(D['K'])
             lmm.setSNPs(D['X'])
             lmm.setCovs(D['Cov'])
@@ -51,7 +51,7 @@ class CIntearctLMM_test(unittest.TestCase):
             inter1 = SP.ones([N,1])
 
             #1. set permuattion
-            lmm = dlimix.CInteractLMM()
+            lmm = dlimix_legacy.CInteractLMM()
             lmm.setInter0(inter0)
             lmm.setInter(inter1)
             lmm.setK(D['K'])
@@ -65,7 +65,7 @@ class CIntearctLMM_test(unittest.TestCase):
             lmm.process()
             pv_perm1 = lmm.getPv().ravel()
             #2. do by hand
-            lmm = dlimix.CInteractLMM()
+            lmm = dlimix_legacy.CInteractLMM()
             lmm.setInter0(inter0)
             lmm.setInter(inter1)
             lmm.setK(D['K'])

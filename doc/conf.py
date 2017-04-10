@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 try:
     import limix
-    version = limix.__version__
+    version = limix_legacy.__version__
 except ImportError:
     version = 'unknown'
 

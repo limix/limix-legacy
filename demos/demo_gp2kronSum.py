@@ -1,11 +1,11 @@
 import scipy as sp
 import scipy.linalg as la
 import pdb
-from limix.core.covar import FreeFormCov
-from limix.core.mean import MeanKronSum
-from limix.core.gp import GP2KronSum
-from limix.core.gp import GP
-from limix.utils.preprocess import covar_rescale
+from limix_legacy.core.covar import FreeFormCov
+from limix_legacy.core.mean import MeanKronSum
+from limix_legacy.core.gp import GP2KronSum
+from limix_legacy.core.gp import GP
+from limix_legacy.utils.preprocess import covar_rescale
 import time
 import copy
 

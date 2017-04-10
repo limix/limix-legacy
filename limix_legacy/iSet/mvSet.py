@@ -1,5 +1,5 @@
 import sys
-import limix
+import limix_legacy
 from limix_legacy.core.covar import LowRankCov
 from limix_legacy.core.covar import FixedCov
 from limix_legacy.core.covar import FreeFormCov
@@ -7,7 +7,7 @@ from limix_legacy.core.gp import GP2KronSumLR
 from limix_legacy.core.gp import GP2KronSum
 import scipy as sp
 import scipy.stats as st
-from limix_legacy.mtSet.core.iset_utils import * 
+from limix_legacy.mtSet.core.iset_utils import *
 import numpy as np
 import numpy.linalg as nla
 import scipy.linalg as la
@@ -53,9 +53,9 @@ class MvSetTest():
             factr:      paramenter that determines the accuracy of the solution
                         (see scipy.optimize.fmin_l_bfgs_b for more details)
         """
-        # avoid SVD failure by adding some jitter 
+        # avoid SVD failure by adding some jitter
         Xr+= 2e-6*(sp.rand(*Xr.shape)-0.5)
-        # make sure it is normalised 
+        # make sure it is normalised
         Xr-= Xr.mean(0)
         Xr/= Xr.std(0)
         Xr/= sp.sqrt(Xr.shape[1])
@@ -63,7 +63,7 @@ class MvSetTest():
         self.F = F
         self.Xr = Xr
         self.covY = sp.cov(Y.T)
-        self.factr = factr 
+        self.factr = factr
         self.debug = debug
         self.gp = {}
         self.info = {}
@@ -75,7 +75,7 @@ class MvSetTest():
             else:                   self.Rr = sp.dot(Xr, Xr.T)
 
     def assoc(self):
-        # fit model 
+        # fit model
         for key in ['null', 'full']:
             if key not in list(self.gp.keys()):
                 if self.debug:      print('.. dening %s' % key)
@@ -87,7 +87,7 @@ class MvSetTest():
         return self.info['null']['LML']-self.info['full']['LML']
 
     def gxe(self):
-        # fit model 
+        # fit model
         for key in ['null', 'full', 'block']:
             if key not in list(self.gp.keys()):
                 if self.debug:      print('.. defining %s' % key)
@@ -161,7 +161,7 @@ class MvSetTest():
         else:
             print('poppo')
         self.gp[type].optimize(factr=self.factr, verbose=False)
-        RV = {'Cr': self.gp[type].covar.Cr.K(),      
+        RV = {'Cr': self.gp[type].covar.Cr.K(),
                 'Cn': self.gp[type].covar.Cn.K(),
                 'B': self.gp[type].mean.B[0],
                 'LML': sp.array([self.gp[type].LML()]),
@@ -172,9 +172,9 @@ class MvSetTest():
             trRr = (self.Xr**2).sum()
             var_r = sp.trace(RV['Cr'])*trRr / float(self.Y.size-1)
             var_c = sp.var(sp.dot(self.F, RV['B']))
-            var_n = sp.trace(RV['Cn'])*self.Y.shape[0] 
+            var_n = sp.trace(RV['Cn'])*self.Y.shape[0]
             var_n-= RV['Cn'].sum() / float(RV['Cn'].shape[0])
-            var_n/= float(self.Y.size-1) 
+            var_n/= float(self.Y.size-1)
             RV['var'] = sp.array([var_r, var_c, var_n])
             if 0 and self.Y.size<5000:
                 pdb.set_trace()
@@ -185,7 +185,7 @@ class MvSetTest():
                 _var = sp.array([_var_r, var_c, _var_n])
                 print(((_var-RV['var'])**2).mean())
             if type=='full':
-                # calculate within region vcs 
+                # calculate within region vcs
                 Cr_block = sp.mean(RV['Cr']) * sp.ones(RV['Cr'].shape)
                 Cr_rank1 = lowrank_approx(RV['Cr'], rank=1)
                 var_block = sp.trace(Cr_block)*trRr / float(self.Y.size-1)
@@ -351,10 +351,10 @@ if __name__=='__main__':
             KiT.append(gp.covar.solve_t(T[i]))
         Ht = sp.zeros((3,3))
         for i in range(3):
-            Ht[i,i] = (sp.einsum('qpn,qpm->nm', T[i], KiT[i])**2).sum() 
+            Ht[i,i] = (sp.einsum('qpn,qpm->nm', T[i], KiT[i])**2).sum()
             for j in range(0,i):
                 Ht[i,j] = (sp.einsum('qpn,qpm->nm', T[i], KiT[j])**2).sum()
-                Ht[j,i] = Ht[i,j] 
+                Ht[j,i] = Ht[i,j]
         if Y.shape[0]<=1000:
             Ki = la.inv(sp.kron(mvset.gp[type].covar.Cn.K(), sp.eye(Y.shape[0])))
             XrXr = sp.dot(Xr, Xr.T)
@@ -367,7 +367,7 @@ if __name__=='__main__':
 
     if 0:
         # 2. quadratic_term = y_Ki_dKp_Ki_dKq_Ki_y
-        Z = Y-sp.dot(F, mvset.gp[type].mean.B[0]) 
+        Z = Y-sp.dot(F, mvset.gp[type].mean.B[0])
         XrXrKiZ = sp.dot(Xr, sp.dot(Xr.T, gp.covar.solve_t(Z)))
         XrXrKiZC = [sp.dot(XrXrKiZ, _Cr.K_grad_i(i).T) for i in range(3)]
         KiXrXrKiZC = [gp.covar.solve_t(XrXrKiZC[i]) for i in range(3)]
@@ -384,9 +384,9 @@ if __name__=='__main__':
             Hq0 = sp.zeros((3,3))
             for i in range(3):
                 for j in range(3):
-                    Hq0[i,j] = sp.dot(z.T, sp.dot(KidK[i], sp.dot(KidK[j], Kiz))) 
+                    Hq0[i,j] = sp.dot(z.T, sp.dot(KidK[i], sp.dot(KidK[j], Kiz)))
             pdb.set_trace()
-            
+
     if 0:
         # compute score with hessian
 
@@ -411,5 +411,3 @@ if __name__=='__main__':
         conv[time_i] = (info['grad']**2).mean()<1e-5
         score1c[time_i] = score1[time_i]-dscore1
         print(time.time()-t0)
-
-

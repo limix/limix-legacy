@@ -123,7 +123,7 @@ def core_extension(reswig):
     incl.extend([np.get_include()])
 
     wrap_file = join('src', 'interfaces', 'python', 'limix_wrap.cpp')
-    i_file = join('src', 'interfaces', 'python', 'limix.i')
+    i_file = join('src', 'interfaces', 'python', 'limix_legacy.i')
 
     if os.path.exists(wrap_file):
         src.append(wrap_file)

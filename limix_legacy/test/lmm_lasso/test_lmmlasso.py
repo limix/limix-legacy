@@ -6,7 +6,7 @@ import scipy.stats
 import pdb
 import os
 import sys
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 import limix_legacy.deprecated.modules.lmmlasso as lmmlasso
 from limix_legacy.test import data
 

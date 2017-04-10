@@ -3,7 +3,7 @@ import unittest
 import scipy as SP
 import pdb
 import limix
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 from limix_legacy.test import data
 import os
 import sys
@@ -20,7 +20,7 @@ class CLMM_test(unittest.TestCase):
         """basic test, comapring pv"""
         for dn in self.datasets:
             D = data.load(os.path.join(self.dir_name,dn))
-            lmm = dlimix.CLMM()
+            lmm = dlimix_legacy.CLMM()
             lmm.setK(D['K'])
             lmm.setSNPs(D['X'])
             lmm.setCovs(D['Cov'])
@@ -39,7 +39,7 @@ class CLMM_test(unittest.TestCase):
 
     def test_exceptions(self):
         D = data.load(os.path.join(self.dir_name,self.datasets[0]))
-        lmm  = dlimix.CLMM()
+        lmm  = dlimix_legacy.CLMM()
         N = 100
         K = SP.eye(N)
         X = SP.randn(N,100)
@@ -61,7 +61,7 @@ class CLMM_test(unittest.TestCase):
             D = data.load(os.path.join(self.dir_name,dn))
             perm = SP.random.permutation(D['X'].shape[0])
             #1. set permuattion
-            lmm = dlimix.CLMM()
+            lmm = dlimix_legacy.CLMM()
             lmm.setK(D['K'])
             lmm.setSNPs(D['X'])
             lmm.setCovs(D['Cov'])
@@ -73,7 +73,7 @@ class CLMM_test(unittest.TestCase):
             lmm.process()
             pv_perm1 = lmm.getPv().ravel()
             #2. do by hand
-            lmm = dlimix.CLMM()
+            lmm = dlimix_legacy.CLMM()
             lmm.setK(D['K'])
             lmm.setSNPs(D['X'][perm])
             lmm.setCovs(D['Cov'])

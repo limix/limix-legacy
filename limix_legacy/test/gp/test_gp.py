@@ -1,7 +1,7 @@
 """GP testing code"""
 import unittest
 import scipy as SP
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 
 class CGPbase_test(unittest.TestCase):
     """test class for GPbase"""
@@ -19,21 +19,21 @@ class CGPbase_test(unittest.TestCase):
         self.n_samples = 100
         self.setXy()
         #self.X = SP.rand(self.n_samples,self.n_dimensions)
-        covar  = dlimix.CCovSqexpARD(self.n_dimensions)
-        ll  = dlimix.CLikNormalIso()
+        covar  = dlimix_legacy.CCovSqexpARD(self.n_dimensions)
+        ll  = dlimix_legacy.CLikNormalIso()
         covar_params = SP.array([1,1,1])
         lik_params   = SP.array([0.5])
-        hyperparams0 = dlimix.CGPHyperParams()
+        hyperparams0 = dlimix_legacy.CGPHyperParams()
         hyperparams0['covar'] = covar_params
         hyperparams0['lik'] = lik_params
-        self.constrainU = dlimix.CGPHyperParams()
-        self.constrainL = dlimix.CGPHyperParams()
+        self.constrainU = dlimix_legacy.CGPHyperParams()
+        self.constrainL = dlimix_legacy.CGPHyperParams()
         self.constrainU['covar'] = +10*SP.ones_like(covar_params);
         self.constrainL['covar'] = 0*SP.ones_like(covar_params);
         self.constrainU['lik'] = +5*SP.ones_like(lik_params);
         self.constrainL['lik'] = 0*SP.ones_like(lik_params);
 
-        self.gp=dlimix.CGPbase(covar,ll)
+        self.gp=dlimix_legacy.CGPbase(covar,ll)
         self.gp.setX(self.X)
         self.gp.setParams(hyperparams0)
         #self.genY()
@@ -41,7 +41,7 @@ class CGPbase_test(unittest.TestCase):
 
     def test_fit(self):
         #create optimization object
-        self.gpopt = dlimix.CGPopt(self.gp)
+        self.gpopt = dlimix_legacy.CGPopt(self.gp)
         self.gpopt.setOptBoundLower(self.constrainL);
         self.gpopt.setOptBoundUpper(self.constrainU);
         #run

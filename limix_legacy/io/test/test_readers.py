@@ -2,7 +2,7 @@ from os.path import dirname, realpath, join
 
 from numpy.testing import assert_allclose, assert_equal
 
-from limix.io import h5data_fetcher, read_csv, read_gen
+from limix_legacy.io import h5data_fetcher, read_csv, read_gen
 
 
 def test_io_hdf5():

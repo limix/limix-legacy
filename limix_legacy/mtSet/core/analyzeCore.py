@@ -5,7 +5,7 @@ import csv
 import numpy as np
 from optparse import OptionParser
 import time
-import limix
+import limix_legacy
 from .read_utils import readNullModelFile
 from .read_utils import readWindowsFile
 from .read_utils import readCovarianceMatrixFile
@@ -22,7 +22,7 @@ def scan(bfile,Y,cov,null,wnds,minSnps,i0,i1,perm_i,resfile,F,colCovarType_r='lo
         np.random.seed(perm_i)
         perm = np.random.permutation(Y.shape[0])
 
-    mtSet = limix.MTSet(Y=Y, S_R=cov['eval'], U_R=cov['evec'], F=F, rank=rank_r)
+    mtSet = limix_legacy.MTSet(Y=Y, S_R=cov['eval'], U_R=cov['evec'], F=F, rank=rank_r)
     mtSet.setNull(null)
     bim = plink_reader.readBIM(bfile,usecols=(0,1,2,3))
     fam = plink_reader.readFAM(bfile,usecols=(0,1))

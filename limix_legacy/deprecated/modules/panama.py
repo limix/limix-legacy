@@ -68,7 +68,7 @@ class PANAMA:
         """train panama module"""
 
         if 0:
-            covar  = limix.deprecarted.CCovLinearISO(rank)
+            covar  = limix_legacy.deprecarted.CCovLinearISO(rank)
             ll  = limix_legacy.deprecated.CLikNormalIso()
             X0 = sp.random.randn(self.N,rank)
             X0 = PCA(self.Y,rank)[0]

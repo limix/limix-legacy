@@ -51,7 +51,7 @@ else:
 #run SWIG?
 if build_options['reswig']:
    #build from .i file
-   srclst = ['limix.i']
+   srclst = ['limix_legacy.i']
 else:
    #use precompiled python wrapper
    srclst = ['limix_wrap.cpp']

@@ -9,7 +9,7 @@ import glob
 import numpy as NP
 from optparse import OptionParser
 import time
-import limix.stats.chi2mixture as C2M
+import limix_legacy.stats.chi2mixture as C2M
 import limix_legacy.utils.plot as plot
 import scipy as SP
 

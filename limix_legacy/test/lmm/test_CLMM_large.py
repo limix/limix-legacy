@@ -3,7 +3,7 @@ import unittest
 import scipy as SP
 import pdb
 import limix
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 from limix_legacy.test import data
 import os
 
@@ -23,7 +23,7 @@ class CLMM_test_large(unittest.TestCase):
             NL = 1000
             self.NL = NL
             X = SP.tile(D['X'],(1,self.NL))
-            lmm = dlimix.CLMM()
+            lmm = dlimix_legacy.CLMM()
             lmm.setK(D['K'])
             lmm.setSNPs(X)
             lmm.setCovs(D['Cov'])

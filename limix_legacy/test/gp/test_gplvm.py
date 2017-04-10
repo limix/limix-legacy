@@ -2,7 +2,7 @@
 import unittest
 import scipy as SP
 import numpy as np
-import limix_legacy.deprecated as dlimix
+import limix_legacy.deprecated as dlimix_legacy
 import scipy.linalg as linalg
 
 
@@ -55,17 +55,17 @@ class CGPLVM_test(unittest.TestCase):
         D = self.settings['D']
 
         #2. setup GP
-        covar  = dlimix.CCovLinearISO(K)
-        ll  = dlimix.CLikNormalIso()
+        covar  = dlimix_legacy.CCovLinearISO(K)
+        ll  = dlimix_legacy.CLikNormalIso()
         #create hyperparm
         covar_params = SP.array([1.0])
         lik_params = SP.array([1.0])
-        hyperparams = dlimix.CGPHyperParams()
+        hyperparams = dlimix_legacy.CGPHyperParams()
         hyperparams['covar'] = covar_params
         hyperparams['lik'] = lik_params
         hyperparams['X']   = self.simulation['X0']
         #cretae GP
-        self.gp=dlimix.CGPbase(covar,ll)
+        self.gp=dlimix_legacy.CGPbase(covar,ll)
         #set data
         self.gp.setY(self.simulation['Y'])
         self.gp.setX(self.simulation['X0'])
@@ -75,7 +75,7 @@ class CGPLVM_test(unittest.TestCase):
     @unittest.skip("someone has to fix it")
     def test_fit(self):
         #create optimization object
-        self.gpopt = dlimix.CGPopt(self.gp)
+        self.gpopt = dlimix_legacy.CGPopt(self.gp)
         #run
         RV = self.gpopt.opt()
         RV = self.gpopt.opt()
@@ -124,22 +124,22 @@ class CGPLVM_test_constK(unittest.TestCase):
         K0 = SP.dot(self.simulation['S'],self.simulation['S'].T)
         K0[:] = 0
 
-        covar1 = dlimix.CFixedCF(K0)
-        covar2 = dlimix.CCovLinearISO(K)
-        covar  = dlimix.CSumCF()
+        covar1 = dlimix_legacy.CFixedCF(K0)
+        covar2 = dlimix_legacy.CCovLinearISO(K)
+        covar  = dlimix_legacy.CSumCF()
         covar.addCovariance(covar1)
         covar.addCovariance(covar2)
 
-        ll  = dlimix.CLikNormalIso()
+        ll  = dlimix_legacy.CLikNormalIso()
         #create hyperparm
         covar_params = SP.array([0.0,1.0])
         lik_params = SP.array([0.1])
-        hyperparams = dlimix.CGPHyperParams()
+        hyperparams = dlimix_legacy.CGPHyperParams()
         hyperparams['covar'] = covar_params
         hyperparams['lik'] = lik_params
         hyperparams['X']   = self.simulation['X0']
         #cretae GP
-        self.gp=dlimix.CGPbase(covar,ll)
+        self.gp=dlimix_legacy.CGPbase(covar,ll)
         #set data
         self.gp.setY(self.simulation['Y'])
         self.gp.setX(self.simulation['X0'])
@@ -149,7 +149,7 @@ class CGPLVM_test_constK(unittest.TestCase):
     @unittest.skip("someone has to fix it")
     def test_fit(self):
         #create optimization object
-        self.gpopt = dlimix.CGPopt(self.gp)
+        self.gpopt = dlimix_legacy.CGPopt(self.gp)
         #run
         RV = self.gpopt.opt()
         RV = self.gpopt.opt()
