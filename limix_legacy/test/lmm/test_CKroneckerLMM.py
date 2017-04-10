@@ -2,7 +2,7 @@
 import unittest
 import scipy as SP
 import pdb
-import limix
+import limix_legacy
 import limix_legacy.deprecated as dlimix_legacy
 from limix_legacy.test import data
 import os
