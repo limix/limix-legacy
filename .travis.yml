@@ -16,9 +16,9 @@ before_install:
 - pip install Cython
 - travis/install_pandoc.sh
 install:
-- install_stage.sh
+- travis/install_stage.sh
 script:
-- script_stage.sh
+- travis/script_stage.sh
 notifications:
   email: false
 deploy:
