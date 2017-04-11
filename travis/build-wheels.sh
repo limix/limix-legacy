@@ -2,6 +2,7 @@
 set -e -x
 
 yum install -y atlas-devel
+yum install -y numpy
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
@@ -9,6 +10,7 @@ for PYBIN in /opt/python/*/bin; do
         continue
     fi
     "${PYBIN}/pip" install Cython
+    "${PYBIN}/pip" install numpy
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
