@@ -5,18 +5,28 @@ git:
   depth: 5
 matrix:
   include:
-  - python: 2.7
-  - python: 3.5
-  - python: 3.6
+    - python: 2.7
+    - python: 3.5
+    - python: 3.6
+    - services: docker
+        env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
 before_install:
 - pip install Cython
 - travis/install_pandoc.sh
+install:
+- if ! [ -z ${DOCKER_IMAGE+x} ]; then
+  docker pull $DOCKER_IMAGE;
+  fi
 script:
 - python setup.py sdist
 - pip install dist/`ls dist | grep -i -E '\.(gz)$' | head -1` -vvv;
 - pushd /
 - python -c "import sys; import limix_legacy; sys.exit(limix_legacy.test())"
 - popd
+- if ! [ -z ${DOCKER_IMAGE+x} ]; then
+  docker run --rm -v `pwd`:/io $DOCKER_IMAGE $PRE_CMD /io/travis/build-wheels.sh;
+  ls wheelhouse/;
+fi
 notifications:
   email: false
 deploy:
