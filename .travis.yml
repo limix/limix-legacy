@@ -8,8 +8,10 @@ matrix:
     - python: 2.7
     - python: 3.5
     - python: 3.6
-    - services: docker
-        env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
+    - sudo: required
+      services:
+        - docker
+      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
 before_install:
 - pip install Cython
 - travis/install_pandoc.sh
