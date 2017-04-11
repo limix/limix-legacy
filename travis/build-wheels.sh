@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e -x
 
-# Install a system package required by our library
 yum install -y atlas-devel
+yum install -y pandoc
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
@@ -11,7 +11,6 @@ for PYBIN in /opt/python/*/bin; do
     fi
     "${PYBIN}/pip" install Cython
     "${PYBIN}/pip" install pypandoc
-    "${PYBIN}/python" -c "from pypandoc import download_pandoc as dp; dp(targetfolder='~/bin/');"
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
