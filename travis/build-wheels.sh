@@ -1,15 +1,14 @@
 #!/bin/bash
 set -e -x
 
-yum install -y atlas-devel
+yum install -y atlas-devel libffi libffi-devel
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
     if [[ $PYBIN == *"p26"* ]]; then
         continue
     fi
-    "${PYBIN}/pip" install Cython
-    "${PYBIN}/pip" install numpy
+    "${PYBIN}/pip" install Cython numpy
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 

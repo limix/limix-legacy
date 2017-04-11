@@ -13,11 +13,11 @@ matrix:
         - docker
       env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
 before_install:
-- travis/before_install_stage.sh
+- travis_retry travis/before_install_stage.sh
 install:
-- travis/install_stage.sh
+- travis_retry travis/install_stage.sh
 script:
-- travis/script_stage.sh
+- travis_retry travis/script_stage.sh
 notifications:
   email: false
 deploy:
