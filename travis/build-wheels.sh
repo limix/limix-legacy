@@ -2,7 +2,6 @@
 set -e -x
 
 yum install -y atlas-devel
-yum install -y numpy
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
