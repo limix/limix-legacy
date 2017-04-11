@@ -39,9 +39,6 @@ class build_ext_subclass(build_ext):
                 e.extra_compile_args.append('-Wno-deprecated-declarations')
                 e.extra_compile_args.append('-Wno-unused-local-typedefs')
                 e.extra_compile_args.append('-Wno-sign-compare')
-                # e.extra_compile_args.append('-Wno-self-assign')
-                # e.extra_compile_args.append('-Wno-macro-redefined')
-                # e.extra_compile_args.append('-Wno-unused-const-variable')
                 e.extra_compile_args.append('-Wno-unused-but-set-variable')
                 e.extra_compile_args.append('-Wno-maybe-uninitialized')
 
@@ -77,10 +74,8 @@ def extra_compile_args():
         return []
     return [
         '-Wno-comment',
-        # '-Wno-unused-const-variable',
         '-Wno-overloaded-virtual',
         '-Wno-unused-but-set-variable',
-        # '-Wno-uninitialized',
         '-Wno-delete-non-virtual-dtor',
         '-Wno-unused-variable',
         '-Wno-maybe-uninitialized'
@@ -166,8 +161,8 @@ def setup_package(reswig, compatible):
     os.chdir(src_path)
     sys.path.insert(0, src_path)
 
-    if sys.platform == 'darwin':
-        mac_workaround(compatible)
+    # if sys.platform == 'darwin':
+    #     mac_workaround(compatible)
 
     needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
     pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
