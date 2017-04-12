@@ -18,6 +18,8 @@ install:
 - travis_retry travis/install_stage.sh
 script:
 - travis_retry travis/script_stage.sh
+after_success:
+- travis_retry travis/deploy_wheels.sh
 notifications:
   email: false
 deploy:
