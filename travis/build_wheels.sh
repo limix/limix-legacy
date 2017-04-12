@@ -22,6 +22,9 @@ for PYBIN in /opt/python/*/bin/; do
     if [[ $PYBIN == *"p26"* ]]; then
         continue
     fi
+    if [[ $PYBIN == *"p33"* ]]; then
+        continue
+    fi
     "${PYBIN}/pip" install python-manylinux-demo --no-index -f /io/wheelhouse
     (cd "$HOME"; "${PYBIN}/nosetests" pymanylinuxdemo)
 done
