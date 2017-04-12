@@ -1,6 +1,3 @@
-import matplotlib
-matplotlib.use('PDF')
-import pylab as pl
 import re
 import os
 import subprocess
@@ -261,6 +258,9 @@ def fit_null(Y,S_XX,U_XX,nfile,F):
 
 
 def preprocess(options):
+    import matplotlib
+    matplotlib.use('PDF')
+    import pylab as pl
 
     assert options.bfile!=None, 'Please specify a bfile.'
 

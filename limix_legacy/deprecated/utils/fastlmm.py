@@ -15,7 +15,6 @@ import numpy as np
 import scipy as sp
 import glob
 import pdb, sys, pickle
-import matplotlib.pylab as plt
 from optparse import OptionParser
 # from util import *
 import os, shutil

@@ -16,8 +16,6 @@ import sys
 import scipy as sp
 import numpy as np
 import pdb
-import pylab as pl
-import matplotlib.pylab as plt
 import scipy.stats as st
 import copy
 import os
@@ -48,6 +46,7 @@ def plot_manhattan(posCum,pv,chromBounds=None,
     labelS           optional plotting label (significant loci)
     labelNS          optional plotting label (non significnat loci)
 	"""
+	import matplotlib.pylab as plt
 	if plt is None:
 		plt = pl.gca()
 
@@ -140,6 +139,7 @@ def qqplot(pv, distr = 'log10', alphaLevel = 0.05):
 		distr           scale of the distribution (log10 or chi2)
 		alphaLevel      significance bounds
 	"""
+	import matplotlib.pylab as plt
 	shape_ok = (len(pv.shape)==1) or ((len(pv.shape)==2) and pv.shape[1]==1)
 	assert shape_ok, 'qqplot requires a 1D array of p-values'
 
