@@ -169,7 +169,7 @@ def setup_package(reswig, compatible):
 
     install_requires = [
         "scikit-learn", "pandas", "scipy", "h5py", "matplotlib",
-        "numpy-sugar>=1.0.34", "dask[complete]>=0.14", "pandas-plink>=1.1.6",
+        "numpy-sugar>=1.0.35", "dask[complete]>=0.14", "pandas-plink>=1.1.6",
         "tables"
     ]
     setup_requires = [] + pytest_runner
