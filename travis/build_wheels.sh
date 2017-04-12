@@ -9,7 +9,7 @@ for PYBIN in /opt/python/*/bin; do
        [[ $PYBIN == *"p34"* ]]; then
         continue
     fi
-    "${PYBIN}/pip" Cython numpy
+    "${PYBIN}/pip" install Cython numpy
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
 done
 
