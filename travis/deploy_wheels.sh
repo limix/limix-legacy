@@ -13,7 +13,7 @@ else
     if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
         ls dist
         pip install twine
-        twine upload ${TRAVIS_BUILD_DIR}/dist/limix_inference*.whl \
+        twine upload ${TRAVIS_BUILD_DIR}/dist/limix_legacy*.whl \
               -u dhorta -p ${PYPI_PASSWORD}
     fi
 fi
