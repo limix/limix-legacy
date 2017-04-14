@@ -9,4 +9,11 @@ if ! [ -z ${DOCKER_IMAGE+x} ]; then
     pip install twine Cython numpy
     twine upload ${TRAVIS_BUILD_DIR}/wheelhouse/limix_legacy*.whl \
         -u dhorta -p ${PYPI_PASSWORD}
+else
+    if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+        ls dist
+        pip install twine
+        twine upload ${TRAVIS_BUILD_DIR}/dist/limix_inference*.whl \
+              -u dhorta -p ${PYPI_PASSWORD}
+    fi
 fi
