@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import scipy as sp
-import limix.deprecated.io.data_util as du
+import limix_legacy.deprecated.io.data_util as du
 import pandas as pd
 
 class genotype_reader_h5py():
