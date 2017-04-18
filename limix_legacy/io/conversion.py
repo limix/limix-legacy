@@ -6,7 +6,7 @@ import scipy as sp
 import os
 import pdb
 import subprocess, sys, os
-import limix_legacy.deprecated.io.plink as PLINK
+import limix.deprecated.io.plink as PLINK
 
 
 class LIMIX_converter(object):

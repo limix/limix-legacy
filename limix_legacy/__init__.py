@@ -2,8 +2,6 @@ from pkg_resources import DistributionNotFound as _DistributionNotFound
 from pkg_resources import get_distribution as _get_distribution
 
 from . import io
-from .mtSet import MTSet
-from .varDecomp import VarianceDecomposition
 
 try:
     __version__ = _get_distribution('limix-legacy').version

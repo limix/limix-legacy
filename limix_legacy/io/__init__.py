@@ -1,17 +1,13 @@
-r"""
-**********
-I/O module
-**********
-
-- :func:`.read_plink`
-- :func:`.h5data_fetcher`
-- :func:`.read_csv`
-- :func:`.read_gen`
-"""
-
-from ._csv import read_csv
-from .gen import read_gen
-from .hdf5 import h5data_fetcher
-from .plink import read_plink
-
-__all__ = ['read_plink', 'h5data_fetcher', 'read_csv', 'read_gen']
+# Copyright(c) 2014, The LIMIX developers (Christoph Lippert, Paolo Francesco Casale, Oliver Stegle)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
