@@ -9,7 +9,6 @@ except _DistributionNotFound:
     __version__ = 'unknown'
 
 
-
 def test():
     import os
     p = __import__('limix_legacy').__path__[0]
@@ -18,7 +17,11 @@ def test():
     os.chdir(src_path)
 
     try:
-        return_code = __import__('pytest').main(['-q', '--doctest-modules'])
+        return_code = __import__('pytest').main([
+            '-q', '--doctest-modules',
+            '--ignore=limix_legacy/modules/dirIndirVD_commented_forDistrib.py',
+            '--ignore=limix_legacy/modules/social_data_HSmice_paper.py'
+        ])
     finally:
         os.chdir(old_path)
 
