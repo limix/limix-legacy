@@ -9,7 +9,6 @@ This is a deprecated package meant to provide backward compatibility for
 
 The recommended way of installing it is via
 [pip](https://pypi.python.org/pypi/pip)
-
 ```bash
 pip install limix-legacy
 ```
