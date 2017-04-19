@@ -19,8 +19,8 @@ def test():
     try:
         return_code = __import__('pytest').main([
             '-q', '--doctest-modules',
-            '--ignore=limix_legacy/modules/dirIndirVD_commented_forDistrib.py',
-            '--ignore=limix_legacy/modules/social_data_HSmice_paper.py'
+            '--ignore=modules/dirIndirVD_commented_forDistrib.py',
+            '--ignore=modules/social_data_HSmice_paper.py'
         ])
     finally:
         os.chdir(old_path)
