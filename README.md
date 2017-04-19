@@ -2,12 +2,8 @@
 
 [![PyPI-License](https://img.shields.io/pypi/l/limix_legacy.svg?style=flat-square)](https://pypi.python.org/pypi/limix_legacy/) [![PyPI-Version](https://img.shields.io/pypi/v/limix_legacy.svg?style=flat-square)](https://pypi.python.org/pypi/limix_legacy/)
 
-Limix is a flexible and efficient linear mixed model library with interfaces
-to Python.
-Genomic analyses require flexible models that can be adapted to the needs of
-the user.
-Limix is smart about how particular models are fitted to save
-computational cost.
+This is a deprecated package meant to provide backward compatibility for
+[limix](https://github.com/limix/limix) package.
 
 ## Install
 
@@ -18,21 +14,10 @@ The recommended way of installing it is via
 pip install limix-legacy
 ```
 
-## Usage
-
-A good starting point is our package Vignettes.
-These tutorials are available from this repository:
-https://github.com/PMBio/limix-tutorials.
-
-The main package vignette can also be viewed using the ipython notebook viewer:
-http://nbviewer.ipython.org/github/pmbio/limix-tutorials/blob/master/index.ipynb.
-
-Alternatively, the source file is available in the separate Limix tutorial repository:
-https://github.com/PMBio/limix-tutorials
-
 ## Problems
 
-If you encounter any issue, please, [submit it](https://github.com/PMBio/limix/issues).
+If you encounter any issue, please,
+[submit it](https://github.com/limix/limix-legacy/issues/new).
 
 ## Authors
 
