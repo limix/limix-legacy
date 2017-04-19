@@ -1,4 +1,4 @@
-# Limix
+# limix-legacy
 
 [![PyPI-License](https://img.shields.io/pypi/l/limix_legacy.svg?style=flat-square)](https://pypi.python.org/pypi/limix_legacy/) [![PyPI-Version](https://img.shields.io/pypi/v/limix_legacy.svg?style=flat-square)](https://pypi.python.org/pypi/limix_legacy/)
 
