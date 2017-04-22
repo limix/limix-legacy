@@ -64,4 +64,4 @@ env:
   global:
     - secure: EV6xfCNZg+hc9rf+nbRuLHsD2mHu0TCFf2f4rV5ECvix7hRUdPP7r7w6DgfOEUAIGmMW+SEQ+DQb+fb2fAUeWCTBsfqS5rDs6I5AxA27Kzs6FHwlcrJ57m57hNFqnhedxhDeHgv5/m3i/Z+1LuBBa2F11EN+MsS3023xPh4wb9COgwf5S5B8XaF5zaUkQyU91Lvi0hAI2orGwYrvH0hxdPS3RIF0ak7C4USqPug+efM4uMfasQpevukEmZUnRExfDqpF72AuzciMGMbLjSZD+ZhWMDZGkEOJUX0fUv47bwdOPZ5Ys533IfqKfiBZBrlYJ/B0FNOff3L7Y59RC7XvW4MF8sRPmbnGpBTOXWDbhsg0R4J563M4ij/tKGO5XLp1JdTllNSsqzBI8J50DYSR3RvTwoTOEi4MnWe077FYDZWd8WBg066vrnmUFUKWX3o/1YZoKWImfp75S6fCFcoOMV9W3EFtnKtT1AAvxsHMQ6caz5Kpzgi07Rq3yrpST01TVjwbp5hawXEvzRU86fAllTXTpVjWpsFQvjFPoIF/unehqe6qJ65FLvl8ngHMlra8lFVdAb8U9sZd2UwPP3o2Ra8kX9+fCNSTHISvvTPeh4SthYg8zwzRFQ7SQH2LjQukDwyadHN6rYEr8Xj8KMz2fjcCeaBmh9oZ5aPNuOr3bLk=
     - PKG_NAME=limix_legacy
-    - PY_DEPS="numpy scipy scikit-learn pandas h5py tables matplotlib numpy-sugar"
+    - PY_DEPS="numpy scipy scikit-learn pandas h5py tables matplotlib"

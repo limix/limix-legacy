@@ -164,9 +164,7 @@ def setup_package(reswig, compatible):
     needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
     pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
 
-    install_requires = [
-        "scikit-learn", "pandas", "scipy", "h5py", "numpy-sugar>=1.0.35"
-    ]
+    install_requires = ["scikit-learn", "pandas", "scipy", "h5py"]
     setup_requires = [] + pytest_runner
     tests_require = ['pytest']
 
