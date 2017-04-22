@@ -3,7 +3,6 @@ import sys
 from os.path import join
 
 from Cython.Distutils import build_ext
-
 from setuptools import find_packages, setup
 from setuptools.extension import Extension
 
@@ -73,12 +72,9 @@ def extra_compile_args():
     if sys.platform.startswith('win'):
         return []
     return [
-        '-Wno-comment',
-        '-Wno-overloaded-virtual',
-        '-Wno-unused-but-set-variable',
-        '-Wno-delete-non-virtual-dtor',
-        '-Wno-unused-variable',
-        '-Wno-maybe-uninitialized'
+        '-Wno-comment', '-Wno-overloaded-virtual',
+        '-Wno-unused-but-set-variable', '-Wno-delete-non-virtual-dtor',
+        '-Wno-unused-variable', '-Wno-maybe-uninitialized'
     ]
 
 
@@ -97,7 +93,8 @@ def core_extension(reswig):
 
     def swig_opts():
         return [
-            '-c++', '-outdir', join('limix_legacy', 'deprecated'), '-I' + join('src')
+            '-c++', '-outdir', join('limix_legacy', 'deprecated'),
+            '-I' + join('src')
         ]
 
     def nlopt_files():
@@ -168,8 +165,7 @@ def setup_package(reswig, compatible):
     pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
 
     install_requires = [
-        "scikit-learn", "pandas", "scipy", "h5py",
-        "numpy-sugar>=1.0.35", "dask[complete]>=0.14", "pandas-plink>=1.1.6"
+        "scikit-learn", "pandas", "scipy", "h5py", "numpy-sugar>=1.0.35"
     ]
     setup_requires = [] + pytest_runner
     tests_require = ['pytest']
@@ -195,18 +191,6 @@ def setup_package(reswig, compatible):
         license='Apache License 2.0',
         ext_modules=[core_extension(reswig)] + ensemble_extension(),
         cmdclass=dict(build_ext=build_ext_subclass),
-        entry_points={
-            'console_scripts': [
-                'limix_runner=limix_legacy.scripts.limix_runner:entry_point',
-                'mtSet_postprocess=limix_legacy.scripts.mtSet_postprocess:entry_point',
-                'mtSet_preprocess=limix_legacy.scripts.mtSet_preprocess:entry_point',
-                'mtSet_simPheno=limix_legacy.scripts.mtSet_simPheno:entry_point',
-                'mtSet_analyze=limix_legacy.scripts.mtSet_analyze:entry_point',
-                'limix_converter=limix_legacy.scripts.limix_converter:entry_point',
-                'iSet_analyze=limix_legacy.scripts.iSet_analyze:entry_point',
-                'iSet_postprocess=limix_legacy.scripts.iSet_postprocess:entry_point',
-            ]
-        },
         classifiers=[
             'Development Status :: 5 - Production/Stable',
             'Environment :: Console',
