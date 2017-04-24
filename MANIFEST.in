@@ -11,8 +11,3 @@ recursive-include src/limix_legacy *.cpp *.h
 recursive-include src/interfaces *.cpp *.txt *.i *.py
 
 recursive-include cython/lmm_forest *
-
-include limix_legacy/io/test/data/hdf5/data.h5
-include limix_legacy/io/test/data/csv/pheno.csv
-include limix_legacy/io/test/data/gen/example.gen
-include limix_legacy/io/test/data/gen/example.sample
