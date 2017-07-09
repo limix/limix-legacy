@@ -93,8 +93,8 @@ def core_extension(reswig):
 
     def swig_opts():
         return [
-            '-c++', '-outdir', join('limix_legacy', 'deprecated'),
-            '-I' + join('src')
+            '-c++', '-outdir',
+            join('limix_legacy', 'deprecated'), '-I' + join('src')
         ]
 
     def nlopt_files():
@@ -170,7 +170,7 @@ def setup_package(reswig, compatible):
 
     metadata = dict(
         name="limix-legacy",
-        version="0.8.12",
+        version="0.8.13",
         description="A flexible and fast mixed model toolbox.",
         long_description=long_description,
         keywords='linear mixed models, GWAS, QTL, ' +
