@@ -1,67 +1,51 @@
 language: python
-sudo: required
-dist: trusty
-git:
-  depth: 5
-cache: pip
+python: 3.6
+env:
+  global:
+  - PKG_NAME=limix_legacy
+  - CIBW_SKIP="cp34-* cp35-*"
+  - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
 matrix:
   include:
-  - python: 2.7
-  - python: 3.5
-  - python: 3.6
   - sudo: required
     services:
     - docker
-    env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
   - os: osx
-    osx_image: xcode7.3
     language: generic
-    sudo: required
-    env: PYENV=py27
-  - os: osx
-    osx_image: xcode8.3
-    language: generic
-    sudo: required
-    env: PYENV=py27
-  - os: osx
-    osx_image: xcode7.3
-    language: generic
-    sudo: required
-    env: PYENV=py35
-  - os: osx
-    osx_image: xcode8.3
-    language: generic
-    sudo: required
-    env: PYENV=py35
-  - os: osx
-    osx_image: xcode7.3
-    language: generic
-    sudo: required
-    env: PYENV=py36
-  - os: osx
-    osx_image: xcode8.3
-    language: generic
-    sudo: required
-    env: PYENV=py36
-before_install:
-- travis_retry bash <(curl -s https://raw.githubusercontent.com/limix/travis-tools/master/get-travis-tools.sh)
-- travis_retry travis/before-install.sh
-- travis_retry travis/test-before-install.sh
+    before_install:
+    - brew update
+    - brew outdated python || brew upgrade python
+    - brew unlink python && brew link python
+    - export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+    - hash -r
+    - pip install --upgrade pip setuptools wheel
 script:
-- travis_retry travis/script.sh
-after_success:
-- travis_retry travis/after-success.sh
+- |
+  if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
+    sudo mkdir -p /usr/local/man
+    sudo chown -R "${USER}:admin" /usr/local/man
+  fi
+- bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
+- pip install cibuildwheel>=0.9.1
+- cibuildwheel --output-dir wheelhouse
+- |
+  if [ "${TRAVIS_TAG:-}" != "" ]; then
+    pip install twine
+    python -m twine upload --skip-existing wheelhouse/*
+  fi
 notifications:
-  email: false
+  email:
+    recipients:
+    - danilo.horta@gmail.com
+    on_success: never
+    on_failure: always
 deploy:
   provider: pypi
   user: dhorta
   password:
-    secure: jh9kPAxK+0CnYvLiqJrtsl+J3tcc/evZw20mveIaGf+THAtPUtlzDeqQUGVFkaanlYx+kTaDyPoqea/AIMH9tzk0Fit0dQkkI96z+iJIiKr9h2gpYgFqgq/EMhbP0icmF3q2orMcfl/oqvYjwn/GYRlpHpzR9B27QJlDnw3jUvd+hd/swocfl+LunNpgvs83qkgEYUu5dRstWrgbPPoaFuXBhr7Cjlu9CFZltKOAC/KFy19x8FH8i7dUvmYLhjrFEYYgJYe+i6SXe34Pwb3turcHCFMU/O4gFCglERI2wYrvD+69ECxbq7pRscudKUVe3yTolewmophJjeyB4Cdh9PDjKVOloKaka6WkhA7YT0jygtowRTQE/wLN5JR9eS7zY9Il0KGBkYk3LfFmeXV8EVf9SWdxD6EmcKa0ImYcwHmPQXyt2lxMVwC/FiyRBVnIxhZeFLa1YQFI0/Y+jcg4kG2jTGCYFFZvaoIaCtPCcqV856q9EMA+/BFQnupbiE3zSdvhKL/iuwkghaF8V5B39R9saHwDVKnExuMyQK95FboOwjm06SWOEIiMIu+NrW/uU+0HWaEDlqjilv/L8dh6Jx/Hb8Wm4/0Hi+y8zh68Qc2pkAhG9Nf7Tn/Y27MNg5X+SfOHGF+j5TMZeXa64acYOxm8xIl/kWc9DAcioCr9eWs=
+    secure: cvaQTg/YZjs36omwKZkOkcARHBhrjdWH3jGWFD9WQxZxl4odKkYPyeITB4V2U9QA2JUBB2iklLY0QL4DAAiA124iH2wNaHjHIMGFzFA79Zc352V3KtevPdPvLZaRpY5N4jyazSQLL+Abg7pnMoAerWRUZi5+SYupeCpfdjrnJjiS6O1ISPY2lO+yqjxkgCKtGK4Vu+ccaF5XuAvcny8cNRr0lccIeLSOLcj4xRlukvCbzZ4kMQ2dTBCoG/SCIumEEQjRCRsEG3aYpXEnbhyE9ItOZDTBMZPwAojjibB7sgSsWaMOrg9P6fYENtxQQ0Wx9/eQpXV+qoUz7hpo63VOFYbDuKV6TxTGNnNhk1rbo9HV8SAtNf4WZAcl/0uKhUe8LLfqfMOimSfDnFp4XJe2csNMrzXhZOoUiiZlKkV2fgjf2/IJrSYFwNmWJg9hRKE09BdAFqBuXh+gqcGBDJd0XJhph0wM9ukBp4uHIhJK1cSrr0dP3xg5TPb10OnKxr0ULZ3hupXUc7l2Ff2RKf01xnR5xqMNoQzbnIlw4p3pu7N08JJ3h9hbCEaaCJ2L3K+X3rdDCni0LMHA/EpZlUQyfoI8VWkvyHPX2fx37xYHAWbf0keW7sdJzcqkXhfWAS4D3gN0sRmLDnDbysIWFMSwj1fchzFrBqbTnLtssQQR/IU=
   on:
-    repo: limix/limix-legacy
-env:
-  global:
-    - secure: EV6xfCNZg+hc9rf+nbRuLHsD2mHu0TCFf2f4rV5ECvix7hRUdPP7r7w6DgfOEUAIGmMW+SEQ+DQb+fb2fAUeWCTBsfqS5rDs6I5AxA27Kzs6FHwlcrJ57m57hNFqnhedxhDeHgv5/m3i/Z+1LuBBa2F11EN+MsS3023xPh4wb9COgwf5S5B8XaF5zaUkQyU91Lvi0hAI2orGwYrvH0hxdPS3RIF0ak7C4USqPug+efM4uMfasQpevukEmZUnRExfDqpF72AuzciMGMbLjSZD+ZhWMDZGkEOJUX0fUv47bwdOPZ5Ys533IfqKfiBZBrlYJ/B0FNOff3L7Y59RC7XvW4MF8sRPmbnGpBTOXWDbhsg0R4J563M4ij/tKGO5XLp1JdTllNSsqzBI8J50DYSR3RvTwoTOEi4MnWe077FYDZWd8WBg066vrnmUFUKWX3o/1YZoKWImfp75S6fCFcoOMV9W3EFtnKtT1AAvxsHMQ6caz5Kpzgi07Rq3yrpST01TVjwbp5hawXEvzRU86fAllTXTpVjWpsFQvjFPoIF/unehqe6qJ65FLvl8ngHMlra8lFVdAb8U9sZd2UwPP3o2Ra8kX9+fCNSTHISvvTPeh4SthYg8zwzRFQ7SQH2LjQukDwyadHN6rYEr8Xj8KMz2fjcCeaBmh9oZ5aPNuOr3bLk=
-    - PKG_NAME=limix_legacy
-    - PY_DEPS="numpy scipy scikit-learn pandas h5py"
+    tags:       true
+    repo:       limix/limix-legacy
+    banch:      master
+    python: 3.6
