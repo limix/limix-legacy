@@ -3,7 +3,7 @@ python: 3.6
 env:
   global:
   - PKG_NAME=limix_legacy
-  - CIBW_SKIP="cp34-* cp35-* cp37-*"
+  - CIBW_SKIP="cp34-* cp35-*"
   - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
   - CIBW_BEFORE_BUILD="pip install --upgrade cython numpy scipy"
 matrix:
@@ -11,15 +11,6 @@ matrix:
   - sudo: required
     services:
     - docker
-  - os: osx
-    language: generic
-    before_install:
-    - brew update
-    - brew outdated python || brew upgrade python
-    - brew unlink python && brew link python
-    - export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-    - hash -r
-    - pip install --upgrade pip setuptools wheel
 script:
 - |
   if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
