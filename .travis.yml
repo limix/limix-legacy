@@ -5,7 +5,7 @@ env:
   - PKG_NAME=limix_legacy
   - CIBW_SKIP="cp34-* cp35-*"
   - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
-  - CIBW_BEFORE_BUILD="pip install --upgrade cython numpy scipy"
+  - CIBW_BEFORE_BUILD="yum install hdf5 hdf5-devel -y && pip install --upgrade cython numpy scipy"
 matrix:
   include:
   - sudo: required
