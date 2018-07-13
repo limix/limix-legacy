@@ -5,7 +5,7 @@ env:
   - PKG_NAME=limix_legacy
   - CIBW_SKIP="cp34-* cp35-*"
   - CIBW_TEST_COMMAND="python -c \"import $PKG_NAME; import sys; sys.exit($PKG_NAME.test())\""
-  - CIBW_BEFORE_BUILD="pip install --upgrade cython numpy"
+  - CIBW_BEFORE_BUILD="pip install --upgrade cython numpy scipy"
 matrix:
   include:
   - sudo: required
@@ -26,7 +26,7 @@ script:
     sudo mkdir -p /usr/local/man
     sudo chown -R "${USER}:admin" /usr/local/man
   fi
-- pip install --upgrade cython numpy
+- pip install --upgrade cython numpy scipy
 - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
 - pip install cibuildwheel>=0.9.2
 - cibuildwheel --output-dir wheelhouse
