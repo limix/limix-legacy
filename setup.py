@@ -8,15 +8,17 @@ from setuptools.extension import Extension
 
 try:
     import pypandoc
-    long_description = pypandoc.convert_file('README.md', 'rst')
+
+    long_description = pypandoc.convert_file("README.md", "rst")
 except (OSError, IOError, ImportError):
-    long_description = open('README.md').read()
+    long_description = open("README.md").read()
 
 
 def _check_gcc_cpp11(cc_name):
     import subprocess
+
     try:
-        cmd = cc_name + ' -E -dM -std=c++11 -x c++ /dev/null > /dev/null'
+        cmd = cc_name + " -E -dM -std=c++11 -x c++ /dev/null > /dev/null"
         subprocess.check_call(cmd, shell=True)
     except subprocess.CalledProcessError:
         return False
@@ -27,26 +29,28 @@ class build_ext_subclass(build_ext):
     def build_extensions(self):
         import platform
         from distutils import sysconfig
-        if (hasattr(self.compiler, 'compiler') and
-                len(self.compiler.compiler) > 0):
+
+        if hasattr(self.compiler, "compiler") and len(self.compiler.compiler) > 0:
             cc_name = self.compiler.compiler[0]
-            stdcpp = '-std=c++11'
-            if 'gcc' in cc_name and not _check_gcc_cpp11(cc_name):
-                stdcpp = '-std=c++0x'
+            stdcpp = "-std=c++11"
+            if "gcc" in cc_name and not _check_gcc_cpp11(cc_name):
+                stdcpp = "-std=c++0x"
             for e in self.extensions:
                 e.extra_compile_args.append(stdcpp)
-                e.extra_compile_args.append('-Wno-deprecated-declarations')
-                e.extra_compile_args.append('-Wno-unused-local-typedefs')
-                e.extra_compile_args.append('-Wno-sign-compare')
-                e.extra_compile_args.append('-Wno-unused-but-set-variable')
-                e.extra_compile_args.append('-Wno-maybe-uninitialized')
+                e.extra_compile_args.append("-Wno-deprecated-declarations")
+                e.extra_compile_args.append("-Wno-unused-local-typedefs")
+                e.extra_compile_args.append("-Wno-sign-compare")
+                e.extra_compile_args.append("-Wno-unused-but-set-variable")
+                e.extra_compile_args.append("-Wno-maybe-uninitialized")
 
             conf_vars = sysconfig.get_config_vars()
-            if 'MACOSX_DEPLOYMENT_TARGET' in conf_vars and len(
-                    conf_vars['MACOSX_DEPLOYMENT_TARGET']) > 0:
-                _v1, _v2 = conf_vars['MACOSX_DEPLOYMENT_TARGET'].split('.')
+            if (
+                "MACOSX_DEPLOYMENT_TARGET" in conf_vars
+                and len(conf_vars["MACOSX_DEPLOYMENT_TARGET"]) > 0
+            ):
+                _v1, _v2 = conf_vars["MACOSX_DEPLOYMENT_TARGET"].split(".")
                 if int(_v1) == 10 and int(_v2) < 9:
-                    stdcpp = '--stdlib=libc++'
+                    stdcpp = "--stdlib=libc++"
                     for e in self.extensions:
                         e.extra_compile_args.append(stdcpp)
         build_ext.build_extensions(self)
@@ -58,23 +62,25 @@ def mac_workaround(compatible):
 
     conf_vars = sysconfig.get_config_vars()
     if compatible:
-        conf_vars['MACOSX_DEPLOYMENT_TARGET'] = '10.9'
+        conf_vars["MACOSX_DEPLOYMENT_TARGET"] = "10.9"
         return
-    vers = platform.mac_ver()[0].split('.')
+    vers = platform.mac_ver()[0].split(".")
     if len(vers) == 3:
-        conf_vars['MACOSX_DEPLOYMENT_TARGET'] =\
-            vers[0] + '.' + vers[1]
+        conf_vars["MACOSX_DEPLOYMENT_TARGET"] = vers[0] + "." + vers[1]
     else:
-        conf_vars['MACOSX_DEPLOYMENT_TARGET'] = platform.mac_ver()[0]
+        conf_vars["MACOSX_DEPLOYMENT_TARGET"] = platform.mac_ver()[0]
 
 
 def extra_compile_args():
-    if sys.platform.startswith('win'):
+    if sys.platform.startswith("win"):
         return []
     return [
-        '-Wno-comment', '-Wno-overloaded-virtual',
-        '-Wno-unused-but-set-variable', '-Wno-delete-non-virtual-dtor',
-        '-Wno-unused-variable', '-Wno-maybe-uninitialized'
+        "-Wno-comment",
+        "-Wno-overloaded-virtual",
+        "-Wno-unused-but-set-variable",
+        "-Wno-delete-non-virtual-dtor",
+        "-Wno-unused-variable",
+        "-Wno-maybe-uninitialized",
     ]
 
 
@@ -93,29 +99,31 @@ def core_extension(reswig):
 
     def swig_opts():
         return [
-            '-c++', '-outdir', join('limix_legacy', 'deprecated'),
-            '-I' + join('src')
+            "-c++",
+            "-outdir",
+            join("limix_legacy", "deprecated"),
+            "-I" + join("src"),
         ]
 
     def nlopt_files():
-        src = open(join('External', 'nlopt_src.files')).readlines()
-        src = [join('External', 'nlopt', s).strip() for s in src]
-        hdr = globr(join('External', 'nlopt'), '*/*.h')
+        src = open(join("External", "nlopt_src.files")).readlines()
+        src = [join("External", "nlopt", s).strip() for s in src]
+        hdr = globr(join("External", "nlopt"), "*/*.h")
         return (src, hdr)
 
     (src, hdr) = nlopt_files()
-    src.extend(globr(join('src', 'limix_legacy'), '*.cpp'))
-    hdr.extend(globr(join('src', 'limix_legacy'), '*.h'))
+    src.extend(globr(join("src", "limix_legacy"), "*.cpp"))
+    hdr.extend(globr(join("src", "limix_legacy"), "*.h"))
 
-    incl = ['src', 'External', join('External', 'nlopt')]
+    incl = ["src", "External", join("External", "nlopt")]
     incl = [join(i) for i in incl]
-    folder = join('External', 'nlopt')
+    folder = join("External", "nlopt")
     incl += [join(folder, f) for f in os.listdir(folder)]
     incl = [i for i in incl if os.path.isdir(i)]
     incl.extend([np.get_include()])
 
-    wrap_file = join('src', 'interfaces', 'python', 'limix_wrap.cpp')
-    i_file = join('src', 'interfaces', 'python', 'limix_legacy.i')
+    wrap_file = join("src", "interfaces", "python", "limix_wrap.cpp")
+    i_file = join("src", "interfaces", "python", "limix_legacy.i")
 
     if os.path.exists(wrap_file):
         src.append(wrap_file)
@@ -125,12 +133,13 @@ def core_extension(reswig):
     depends = src + hdr
 
     ext = Extension(
-        'limix_legacy.deprecated._core',
+        "limix_legacy.deprecated._core",
         src,
         include_dirs=incl,
         extra_compile_args=extra_compile_args(),
         swig_opts=swig_opts(),
-        depends=depends)
+        depends=depends,
+    )
 
     return ext
 
@@ -138,17 +147,19 @@ def core_extension(reswig):
 def ensemble_extension():
     import numpy as np
 
-    src = [join('cython', 'lmm_forest', 'SplittingCore.pyx')]
-    incl = [join('External'), np.get_include()]
+    src = [join("cython", "lmm_forest", "SplittingCore.pyx")]
+    incl = [join("External"), np.get_include()]
     depends = src
     ext = Extension(
-        'limix_legacy.ensemble.SplittingCore',
+        "limix_legacy.ensemble.SplittingCore",
         src,
-        language='c++',
+        language="c++",
         include_dirs=incl,
         extra_compile_args=extra_compile_args(),
-        depends=depends)
+        depends=depends,
+    )
     from Cython.Build import cythonize
+
     return cythonize(ext)
 
 
@@ -161,46 +172,47 @@ def setup_package(reswig, compatible):
     # if sys.platform == 'darwin':
     #     mac_workaround(compatible)
 
-    needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
-    pytest_runner = ['pytest-runner>=2.9'] if needs_pytest else []
+    needs_pytest = {"pytest", "test", "ptr"}.intersection(sys.argv)
+    pytest_runner = ["pytest-runner>=2.9"] if needs_pytest else []
 
     install_requires = ["scikit-learn", "pandas", "scipy", "h5py", "numpy"]
     setup_requires = ["cython", "numpy"] + pytest_runner
-    tests_require = ['pytest']
+    tests_require = ["pytest"]
 
     metadata = dict(
         name="limix-legacy",
-        version="0.8.12",
+        version="0.8.13",
         description="A flexible and fast mixed model toolbox.",
         long_description=long_description,
-        keywords='linear mixed models, GWAS, QTL, ' +
-        'Variance component modelling',
+        keywords="linear mixed models, GWAS, QTL, " + "Variance component modelling",
         maintainer="Limix Developers",
         author="Danilo Horta, Christoph Lippert, Paolo Casale, Oliver Stegle",
         author_email="stegle@ebi.ac.uk",
         maintainer_email="stegle@ebi.ac.uk",
         packages=find_packages(),
         include_package_data=True,
-        url='https://github.com/limix/limix-legacy',
+        url="https://github.com/limix/limix-legacy",
         install_requires=install_requires,
         setup_requires=setup_requires,
         tests_require=tests_require,
         zip_safe=False,
-        license='Apache License 2.0',
+        license="Apache License 2.0",
         ext_modules=[core_extension(reswig)] + ensemble_extension(),
         cmdclass=dict(build_ext=build_ext_subclass),
         classifiers=[
-            'Development Status :: 5 - Production/Stable',
-            'Environment :: Console',
-            'Intended Audience :: Science/Research',
-            'License :: OSI Approved :: Apache Software License',
-            'Natural Language :: English',
-            'Programming Language :: Python :: 2.7',
-            'Topic :: Scientific/Engineering :: Bio-Informatics',
-        ], )
+            "Development Status :: 5 - Production/Stable",
+            "Environment :: Console",
+            "Intended Audience :: Science/Research",
+            "License :: OSI Approved :: Apache Software License",
+            "Natural Language :: English",
+            "Programming Language :: Python :: 2.7",
+            "Topic :: Scientific/Engineering :: Bio-Informatics",
+        ],
+    )
 
     # http://stackoverflow.com/a/29634231
     import distutils.sysconfig
+
     cfg_vars = distutils.sysconfig.get_config_vars()
     for key, value in list(cfg_vars.items()):
         if type(value) == str:
@@ -213,7 +225,7 @@ def setup_package(reswig, compatible):
         os.chdir(old_path)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     reswig = False
     if "--reswig" in sys.argv:
         reswig = True
